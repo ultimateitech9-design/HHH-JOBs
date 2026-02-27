@@ -1,0 +1,129 @@
+.report-issue-panel {
+  max-width: 980px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(247, 250, 255, 0.95));
+}
+
+.report-issue-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.8rem;
+}
+
+.report-issue-head h2 {
+  font-size: clamp(1.25rem, 2.1vw, 1.7rem);
+  color: #c96714;
+}
+
+.report-issue-head p {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink-700);
+}
+
+.report-issue-head p span {
+  color: #d15b22;
+}
+
+.report-issue-intro {
+  margin-top: 0.6rem;
+  color: var(--ink-700);
+  line-height: 1.45;
+}
+
+.report-issue-form {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.82rem;
+  width: min(760px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgba(16, 33, 58, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  box-shadow: 0 14px 30px rgba(15, 35, 65, 0.08);
+}
+
+.report-issue-form label {
+  display: grid;
+  gap: 0.32rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2f4d;
+}
+
+.report-issue-required {
+  color: #d15b22;
+}
+
+.report-issue-label-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.report-issue-form input,
+.report-issue-form select,
+.report-issue-form textarea {
+  width: 100%;
+  border: 1px solid rgba(16, 33, 58, 0.25);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  background: #fff;
+  font-size: 0.94rem;
+  color: var(--ink-900);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.report-issue-form input:focus,
+.report-issue-form select:focus,
+.report-issue-form textarea:focus {
+  outline: none;
+  border-color: rgba(35, 110, 159, 0.5);
+  box-shadow: 0 0 0 3px rgba(35, 110, 159, 0.14);
+}
+
+.report-issue-contact-block {
+  border: 1px solid rgba(16, 33, 58, 0.12);
+  border-radius: 10px;
+  background: rgba(248, 251, 255, 0.85);
+  padding: 0.72rem;
+  display: grid;
+  gap: 0.68rem;
+}
+
+.report-issue-contact-block p {
+  color: var(--ink-700);
+  font-size: 0.9rem;
+}
+
+.report-issue-landline {
+  display: grid;
+  grid-template-columns: 90px 110px minmax(0, 1fr);
+  gap: 0.45rem;
+}
+
+.report-issue-form small {
+  color: var(--ink-500);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.report-issue-submit {
+  width: fit-content;
+  min-width: 190px;
+  justify-self: center;
+}
+
+@media (max-width: 720px) {
+  .report-issue-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .report-issue-landline {
+    grid-template-columns: 1fr;
+  }
+}
