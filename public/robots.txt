@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Block admin & private pages
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login
+Disallow: /register
+
+# Allow important folders
+Allow: /jobs/
+Allow: /companies/
+
+Sitemap: https://hhh-jobs.com/sitemap.xml
