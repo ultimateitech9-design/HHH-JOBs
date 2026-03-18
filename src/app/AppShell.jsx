@@ -100,7 +100,7 @@ const AppShell = () => {
     { key: 'about', to: '/about-us', label: 'About' },
     { key: 'retired', to: '/retired-employee', label: 'Retired Employee' },
     { key: 'emp-verify', to: '/emp-verify', label: 'Employee Verification' },
-    { key: 'blogs', to: '/blog', label: 'Blogs' }
+    { key: 'blogs', to: 'https://blog.hhh-jobs.com', label: 'Blogs', external: true }
   ];
 
   const dashboardPath = user ? getDashboardPathByRole(user.role) : null;

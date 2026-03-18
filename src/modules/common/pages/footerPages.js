@@ -7,7 +7,7 @@ export const FOOTER_LINK_COLUMNS = [
       { label: 'Careers', to: '/careers', key: 'careers' },
       { label: 'Employer home', to: '/employer-home', key: 'employer-home' },
       { label: 'Sitemap', to: '/sitemap', key: 'sitemap' },
-      { label: 'Blogs', to: '/blog', key: 'blog' }
+      { label: 'Blogs', to: 'https://blog.hhh-jobs.com', key: 'blog', external: true }
     ]
   },
   {
