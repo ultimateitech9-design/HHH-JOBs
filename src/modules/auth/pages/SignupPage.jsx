@@ -1,0 +1,546 @@
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { apiFetch, apiUrl, areDemoFallbacksEnabled } from '../../../utils/api';
+import { getDashboardPathByRole, normalizeRedirectPath, setAuthSession } from '../../../utils/auth';
+import { createLocalSignupFallback } from '../../../utils/localAuthFallback';
+import {
+  generateHrEmployerId,
+  generateRetiredEmployeeId,
+  generateStudentCandidateId
+} from '../../../utils/hrIdentity';
+import AuthFormMessage from '../components/AuthFormMessage';
+import AuthInputField from '../components/AuthInputField';
+import AuthPageShell from '../components/AuthPageShell';
+import AuthPasswordField from '../components/AuthPasswordField';
+import AuthRoleTabs from '../components/AuthRoleTabs';
+import AuthSelectField from '../components/AuthSelectField';
+import AuthSocialButtons from '../components/AuthSocialButtons';
+import {
+  casteOptions,
+  countryCodeOptions,
+  genderOptions,
+  religionOptions,
+  signupRoleOptions,
+  signupShellBenefits
+} from '../config/authOptions';
+import {
+  getSelectedCountry,
+  validateSignupField
+} from '../utils/signupValidation';
+
+const initialFormState = {
+  name: '',
+  companyName: '',
+  email: '',
+  countryCode: '+91',
+  mobile: '',
+  password: '',
+  role: 'student',
+  dateOfBirth: '',
+  gender: '',
+  caste: '',
+  religion: ''
+};
+
+const SignupPage = () => {
+  const [form, setForm] = useState(initialFormState);
+  const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [socialLoading, setSocialLoading] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [availableProviders, setAvailableProviders] = useState(null);
+  const [providersLoading, setProvidersLoading] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectAfterSignupRaw = new URLSearchParams(location.search).get('redirect');
+  const redirectAfterSignup = redirectAfterSignupRaw && redirectAfterSignupRaw.startsWith('/')
+    ? redirectAfterSignupRaw
+    : null;
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const roleParam = params.get('role');
+    if (!roleParam) return;
+
+    const allowedRoles = new Set(['student', 'hr', 'retired_employee']);
+    if (!allowedRoles.has(roleParam)) return;
+
+    setForm((current) => ({ ...current, role: roleParam }));
+  }, [location.search]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setProvidersLoading(true);
+    apiFetch('/auth/providers')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) setAvailableProviders(data?.providers ?? []);
+      })
+      .catch(() => {
+        if (!cancelled) setAvailableProviders([]);
+      })
+      .finally(() => {
+        if (!cancelled) setProvidersLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  const handleChange = (key, value) => {
+    let nextValue = value;
+
+    if (key === 'name' || key === 'companyName') {
+      nextValue = value.replace(/[^A-Za-z\s]/g, '');
+    }
+
+    if (key === 'mobile') {
+      const selectedCountry = getSelectedCountry(form.countryCode);
+      nextValue = value.replace(/\D/g, '').slice(0, selectedCountry.digits);
+    }
+
+    if (key === 'email') {
+      nextValue = value.trimStart();
+    }
+
+    const nextForm = { ...form, [key]: nextValue };
+    setForm(nextForm);
+    setFieldErrors((current) => ({
+      ...current,
+      [key]: validateSignupField(key, nextValue, nextForm),
+      ...(key === 'role'
+        ? {
+          companyName: validateSignupField('companyName', nextForm.companyName, nextForm),
+          dateOfBirth: validateSignupField('dateOfBirth', nextForm.dateOfBirth, nextForm)
+        }
+        : {})
+    }));
+
+    if (error) {
+      setError('');
+    }
+  };
+
+  const handleCountryCodeChange = (value) => {
+    const selectedCountry = getSelectedCountry(value);
+    const cleanedMobile = String(form.mobile || '').replace(/\D/g, '').slice(0, selectedCountry.digits);
+    const nextForm = {
+      ...form,
+      countryCode: value,
+      mobile: cleanedMobile
+    };
+
+    setForm(nextForm);
+    setFieldErrors((current) => ({
+      ...current,
+      mobile: validateSignupField('mobile', cleanedMobile, nextForm)
+    }));
+
+    if (error) {
+      setError('');
+    }
+  };
+
+  const validateForm = () => {
+    const errors = {
+      name: validateSignupField('name', form.name, form),
+      companyName: validateSignupField('companyName', form.companyName, form),
+      email: validateSignupField('email', form.email, form),
+      mobile: validateSignupField('mobile', form.mobile, form),
+      password: validateSignupField('password', form.password, form),
+      dateOfBirth: validateSignupField('dateOfBirth', form.dateOfBirth, form)
+    };
+
+    setFieldErrors(errors);
+    return !Object.values(errors).some(Boolean);
+  };
+
+  const buildSignupUser = (payload) => {
+    const hrEmployerId = form.role === 'hr'
+      ? generateHrEmployerId({ companyName: form.companyName, mobile: form.mobile })
+      : '';
+    const studentCandidateId = form.role === 'student'
+      ? generateStudentCandidateId({ name: form.name, mobile: form.mobile })
+      : '';
+    const retiredEmployeeId = form.role === 'retired_employee'
+      ? generateRetiredEmployeeId({ name: form.name, mobile: form.mobile })
+      : '';
+
+    if (form.role === 'hr') {
+      return { ...payload.user, companyName: form.companyName, hrEmployerId };
+    }
+
+    if (form.role === 'student') {
+      return { ...payload.user, studentCandidateId };
+    }
+
+    if (form.role === 'retired_employee') {
+      return { ...payload.user, retiredEmployeeId };
+    }
+
+    return payload.user;
+  };
+
+  const shouldUseLocalSignupFallback = (response, payload) => {
+    if (!areDemoFallbacksEnabled()) return false;
+    if (!response || response.status < 500) return false;
+
+    const message = String(payload?.message || '').toLowerCase();
+    return (
+      !message
+      || message.includes('gmail')
+      || message.includes('smtp')
+      || message.includes('otp email')
+      || message.includes('login failed')
+      || message.includes('authentication')
+    );
+  };
+
+  const completeLocalSignupFallback = (signupPayload, fallbackMessage = '') => {
+    try {
+      const payload = createLocalSignupFallback(signupPayload);
+      const nextUser = buildSignupUser(payload);
+
+      setAuthSession(payload.token, nextUser);
+      navigate('/verify-otp', {
+        state: {
+          email: form.email,
+          otp: payload.otp || '',
+          emailWarning: fallbackMessage
+        },
+        replace: true
+      });
+      return;
+    } catch (error) {
+      const message = String(error?.message || '').toLowerCase();
+      if (!message.includes('email already registered')) {
+        throw error;
+      }
+    }
+
+    navigate('/verify-otp', {
+      state: {
+        email: form.email,
+        emailWarning: fallbackMessage || 'Your account may already have been created. Enter the OTP if you received it, or resend OTP from the next screen.'
+      },
+      replace: true
+    });
+  };
+
+  const readResponsePayload = async (response) => {
+    const contentType = response.headers.get('content-type') || '';
+
+    try {
+      if (contentType.includes('application/json')) {
+        return await response.json();
+      }
+
+      const text = await response.text();
+      return text ? { message: text } : {};
+    } catch (error) {
+      return {};
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError('');
+
+    if (!validateForm()) {
+      setError('Please fix the highlighted fields.');
+      return;
+    }
+
+    const fullMobile = `${form.countryCode}${form.mobile}`;
+    const signupPayload = {
+      name: form.name.trim(),
+      companyName: form.companyName.trim(),
+      email: form.email.trim(),
+      mobile: fullMobile,
+      password: form.password,
+      role: form.role,
+      dateOfBirth: form.dateOfBirth,
+      gender: form.gender,
+      caste: form.caste,
+      religion: form.religion
+    };
+
+    try {
+      setIsSubmitting(true);
+      const response = await apiFetch('/auth/signup', {
+        method: 'POST',
+        body: JSON.stringify(signupPayload)
+      });
+      const payload = await readResponsePayload(response);
+
+      if (!response.ok) {
+        if (shouldUseLocalSignupFallback(response, payload)) {
+          completeLocalSignupFallback(signupPayload, payload.message || 'Signup email delivery is unavailable right now. A local OTP has been generated for this session.');
+          return;
+        }
+
+        setError(payload.message || 'Unable to create account.');
+        return;
+      }
+
+      const nextUser = buildSignupUser(payload);
+
+      setAuthSession(payload.token, nextUser);
+
+      if (payload.requiresOtpVerification) {
+        navigate('/verify-otp', {
+          state: { email: form.email, otp: payload.otp || '', emailWarning: payload.emailWarning || '' },
+          replace: true
+        });
+        return;
+      }
+
+      const fallbackRedirect = payload.redirectTo || getDashboardPathByRole(nextUser?.role);
+      const nextPath = nextUser?.role === 'retired_employee' && redirectAfterSignup
+        ? redirectAfterSignup
+        : fallbackRedirect;
+
+      navigate(normalizeRedirectPath(nextPath, nextUser?.role), { replace: true });
+    } catch (requestError) {
+      if (areDemoFallbacksEnabled()) {
+        try {
+          completeLocalSignupFallback(signupPayload);
+          return;
+        } catch (fallbackError) {
+          setError(
+            fallbackError.message
+            || requestError.message
+            || 'Signup service unavailable. Please try again.'
+          );
+          return;
+        }
+      }
+
+      setError(requestError.message || 'Signup service unavailable. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const startSocialSignup = (provider) => {
+    setError('');
+
+    if (form.role === 'hr') {
+      setError('HR accounts must use manual signup and login. Google and LinkedIn are only for student and retired employee accounts.');
+      return;
+    }
+
+    const companyNameError = validateSignupField('companyName', form.companyName, form);
+    const dateOfBirthError = validateSignupField('dateOfBirth', form.dateOfBirth, form);
+
+    if (companyNameError) {
+      setFieldErrors((current) => ({ ...current, companyName: companyNameError }));
+      setError(companyNameError);
+      return;
+    }
+
+    if (dateOfBirthError) {
+      setFieldErrors((current) => ({ ...current, dateOfBirth: dateOfBirthError }));
+      setError(dateOfBirthError);
+      return;
+    }
+
+    setSocialLoading(provider);
+    const endpoint = apiUrl(`/auth/oauth/${provider}/start?role=${encodeURIComponent(form.role)}`);
+    window.location.assign(endpoint);
+  };
+
+  const selectedCountry = getSelectedCountry(form.countryCode);
+  const isSocialSignupAllowed = form.role === 'student' || form.role === 'retired_employee';
+
+  return (
+    <AuthPageShell
+      eyebrow="Create Account"
+      title="Register for HHH Jobs"
+      description=""
+      sideTitle="Public auth pages now follow a more modular industry-style structure"
+      sideDescription="The visual shell aligns with the reference app, while HHH Jobs-specific validation, ID generation, fallback OTP logic, and redirects stay intact."
+      benefits={signupShellBenefits}
+      balancedPanels
+      lockBalancedHeight={false}
+      panelClassName="w-full"
+      sideClassName="w-full"
+    >
+      <div className="flex h-full flex-col gap-4">
+        <div className="space-y-4">
+          <AuthRoleTabs
+            label="Account type"
+            helperText=""
+            value={form.role}
+            options={signupRoleOptions}
+            onChange={(value) => handleChange('role', value)}
+            disabled={isSubmitting || Boolean(socialLoading)}
+            compact
+            showDescriptions={false}
+          />
+
+          {isSocialSignupAllowed ? (
+            <AuthSocialButtons
+              onProviderClick={startSocialSignup}
+              loading={socialLoading}
+              disabled={isSubmitting || Boolean(socialLoading)}
+              availableProviders={availableProviders}
+              providersLoading={providersLoading}
+            />
+          ) : (
+            <AuthFormMessage tone="info">
+              HR accounts use manual signup and manual login only.
+            </AuthFormMessage>
+          )}
+
+          <AuthFormMessage>{error}</AuthFormMessage>
+
+          <div className="my-2 flex items-center gap-3">
+            <span className="h-px flex-1 bg-slate-200" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400">Manual signup</span>
+            <span className="h-px flex-1 bg-slate-200" />
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-4">
+          <div className="space-y-4">
+            <div className={`grid gap-4 ${form.role === 'hr' ? 'md:grid-cols-2' : ''}`}>
+              <AuthInputField
+                label="Name"
+                type="text"
+                value={form.name}
+                onChange={(event) => handleChange('name', event.target.value)}
+                placeholder="Enter full name"
+                disabled={isSubmitting || Boolean(socialLoading)}
+                error={fieldErrors.name}
+                className="py-2"
+              />
+
+              {form.role === 'hr' ? (
+                <AuthInputField
+                  label="Company Name"
+                  type="text"
+                  value={form.companyName}
+                  onChange={(event) => handleChange('companyName', event.target.value)}
+                  placeholder="Enter company name"
+                  disabled={isSubmitting || Boolean(socialLoading)}
+                  error={fieldErrors.companyName}
+                  className="py-2"
+                />
+              ) : null}
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-[190px_minmax(0,1fr)]">
+              <AuthSelectField
+                label="Country Code"
+                value={form.countryCode}
+                onChange={(event) => handleCountryCodeChange(event.target.value)}
+                options={countryCodeOptions}
+                disabled={isSubmitting || Boolean(socialLoading)}
+                className="py-2.5"
+              />
+              <AuthInputField
+                label="Mobile"
+                type="tel"
+                inputMode="numeric"
+                value={form.mobile}
+                onChange={(event) => handleChange('mobile', event.target.value)}
+                placeholder={`Enter ${selectedCountry.digits}-digit mobile`}
+                disabled={isSubmitting || Boolean(socialLoading)}
+                error={fieldErrors.mobile}
+                className="py-2"
+              />
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <AuthInputField
+                label="Email"
+                type="email"
+                value={form.email}
+                onChange={(event) => handleChange('email', event.target.value)}
+                placeholder="Enter email address"
+                disabled={isSubmitting || Boolean(socialLoading)}
+                error={fieldErrors.email}
+                className="py-2"
+              />
+
+              <AuthPasswordField
+                label="Password"
+                value={form.password}
+                onChange={(event) => handleChange('password', event.target.value)}
+                placeholder="Enter password"
+                disabled={isSubmitting || Boolean(socialLoading)}
+                error={fieldErrors.password}
+                showPassword={showPassword}
+                onTogglePassword={() => setShowPassword((current) => !current)}
+                className="py-2"
+              />
+            </div>
+
+            {form.role !== 'hr' ? (
+              <div className="rounded-[1.6rem] border border-slate-200 bg-slate-50/70 p-4">
+                <p className="text-sm font-semibold text-navy">Profile metadata</p>
+                <div className="mt-3 grid gap-4 md:grid-cols-2">
+                  <AuthInputField
+                    label="Date of Birth"
+                    type="date"
+                    value={form.dateOfBirth}
+                    onChange={(event) => handleChange('dateOfBirth', event.target.value)}
+                    disabled={isSubmitting || Boolean(socialLoading)}
+                    error={fieldErrors.dateOfBirth}
+                    helper={form.role === 'retired_employee' ? 'Retired employee registration requires age 60+.' : ''}
+                    className="py-2"
+                  />
+
+                  <AuthSelectField
+                    label="Gender"
+                    value={form.gender}
+                    onChange={(event) => handleChange('gender', event.target.value)}
+                    options={genderOptions}
+                    disabled={isSubmitting || Boolean(socialLoading)}
+                    className="py-2.5"
+                  />
+
+                  <AuthSelectField
+                    label="Caste"
+                    value={form.caste}
+                    onChange={(event) => handleChange('caste', event.target.value)}
+                    options={casteOptions}
+                    disabled={isSubmitting || Boolean(socialLoading)}
+                    className="py-2.5"
+                  />
+
+                  <AuthSelectField
+                    label="Religion"
+                    value={form.religion}
+                    onChange={(event) => handleChange('religion', event.target.value)}
+                    options={religionOptions}
+                    disabled={isSubmitting || Boolean(socialLoading)}
+                    className="py-2.5"
+                  />
+                </div>
+              </div>
+            ) : null}
+
+          </div>
+
+          <button
+            type="submit"
+            className="inline-flex w-full items-center justify-center rounded-full gradient-gold px-6 py-2.5 text-sm font-semibold text-primary shadow-lg shadow-gold/20 transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+            disabled={isSubmitting || Boolean(socialLoading)}
+          >
+            {isSubmitting ? 'Creating Account...' : 'Create Account'}
+          </button>
+        </form>
+
+        <div className="flex items-center justify-start pt-1 text-sm font-semibold">
+          <Link to="/login" className="text-brand-700 transition-colors hover:text-brand-800">
+            Already have an account?
+          </Link>
+        </div>
+      </div>
+    </AuthPageShell>
+  );
+};
+
+export default SignupPage;

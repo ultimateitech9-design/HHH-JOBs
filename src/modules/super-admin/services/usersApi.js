@@ -1,0 +1,130 @@
+import { apiFetch, areDemoFallbacksEnabled } from '../../../utils/api';
+import {
+  createManagedAccount,
+  deleteManagedAccount,
+  filterDeletedUsers,
+  findManagedAccountByEmail,
+  getManagedAccounts,
+  markUserDeleted
+} from '../../../utils/managedUsers';
+import { mapApiUserToUi } from './mappers';
+
+export const SUPER_ADMIN_BASE = '/super-admin';
+
+export const clone = (value) => {
+  if (value === null || value === undefined) return value;
+  return JSON.parse(JSON.stringify(value));
+};
+
+export const parseJson = async (response) => {
+  try {
+    return await response.json();
+  } catch (error) {
+    return null;
+  }
+};
+
+export const strictRequest = async ({ path, options, extract = (payload) => payload }) => {
+  const response = await apiFetch(path, options);
+  const payload = await parseJson(response);
+
+  if (!response.ok) {
+    throw new Error(payload?.message || `Request failed with status ${response.status}`);
+  }
+
+  return extract(payload || {});
+};
+
+export const safeRequest = async ({ path, options, emptyData, fallbackData, extract = (payload) => payload }) => {
+  try {
+    const data = await strictRequest({ path, options, extract });
+    return { data, error: '', isDemo: false };
+  } catch (error) {
+    const resolvedFallback = areDemoFallbacksEnabled()
+      ? (typeof fallbackData === 'function' ? fallbackData() : fallbackData)
+      : undefined;
+    return {
+      data: clone(resolvedFallback !== undefined ? resolvedFallback : emptyData),
+      error: error.message || 'Request failed.',
+      isDemo: resolvedFallback !== undefined
+    };
+  }
+};
+
+const filterUsers = (users, filters = {}) => {
+  return users.filter((user) => {
+    const search = String(filters.search || '').toLowerCase();
+    const matchesSearch = !search || [user.name, user.email, user.company, user.id].some((value) => String(value || '').toLowerCase().includes(search));
+    const matchesRole = !filters.role || user.role === filters.role;
+    const matchesStatus = !filters.status || user.status === filters.status;
+    return matchesSearch && matchesRole && matchesStatus;
+  });
+};
+
+const mapManagedAccountToUser = (account) => ({
+  id: account.id,
+  name: account.name,
+  email: account.email,
+  role: account.role,
+  company: account.department || 'HHH Jobs',
+  status: account.status || 'active',
+  verified: true,
+  lastActiveAt: account.last_login_at || null,
+  createdAt: account.created_at || new Date().toISOString()
+});
+
+export const getUsers = async (filters = {}) =>
+  safeRequest({
+    path: `${SUPER_ADMIN_BASE}/users`,
+    emptyData: [],
+    extract: (payload) => {
+      const apiUsers = Array.isArray(payload?.users) ? payload.users.map(mapApiUserToUi) : [];
+      const managedUsers = areDemoFallbacksEnabled()
+        ? getManagedAccounts().map(mapManagedAccountToUser)
+        : [];
+      return filterDeletedUsers(filterUsers([...apiUsers, ...managedUsers], filters));
+    }
+  });
+
+export const updateUserStatus = async (userId, status) =>
+  strictRequest({
+    path: `${SUPER_ADMIN_BASE}/users/${userId}/status`,
+    options: { method: 'PATCH', body: JSON.stringify({ status }) },
+    extract: (payload) => payload?.user || payload
+  });
+
+export const createAdminUser = async (payload) => {
+  const managedRole = String(payload.role || 'admin').trim().toLowerCase();
+  const managedPayload = {
+    name: payload.name,
+    email: payload.email,
+    password: payload.password,
+    role: managedRole === 'data_entry' ? 'dataentry' : managedRole
+  };
+
+  const user = await strictRequest({
+    path: `${SUPER_ADMIN_BASE}/users`,
+    options: { method: 'POST', body: JSON.stringify(payload) },
+    extract: (response) => mapApiUserToUi(response?.user || response)
+  });
+
+  if (areDemoFallbacksEnabled() && !findManagedAccountByEmail(managedPayload.email)) {
+    createManagedAccount(managedPayload);
+  }
+
+  return user;
+};
+
+export const deleteUser = async (userId) => {
+  if (String(userId).startsWith('managed-')) {
+    return deleteManagedAccount(userId);
+  }
+
+  const deletedUser = await strictRequest({
+    path: `${SUPER_ADMIN_BASE}/users/${userId}`,
+    options: { method: 'DELETE' },
+    extract: (response) => response?.deletedUser || { id: userId }
+  });
+  markUserDeleted(userId);
+  return deletedUser;
+};

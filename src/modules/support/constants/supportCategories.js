@@ -1,0 +1,9 @@
+export const SUPPORT_CATEGORIES = [
+  { value: 'technical', label: 'Technical Issue' },
+  { value: 'billing', label: 'Billing' },
+  { value: 'account', label: 'Account Access' },
+  { value: 'job_posting', label: 'Job Posting' },
+  { value: 'application', label: 'Application Flow' },
+  { value: 'complaint', label: 'Complaint' },
+  { value: 'feedback', label: 'Feedback' }
+];

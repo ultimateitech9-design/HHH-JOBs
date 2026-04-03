@@ -1,0 +1,435 @@
+/* ============================================================
+   HHH Jobs — Reusable Animation Utilities
+   src/styles/animations.css
+
+   Pure CSS keyframe animations, 3D transforms, and effects.
+   No JS or external packages required.
+   Import in main.jsx after globals.css.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   KEYFRAME DEFINITIONS
+   ---------------------------------------------------------- */
+
+@keyframes float-up-down {
+  0%,
+  100% { transform: translateY(0px); }
+  50%  { transform: translateY(-14px); }
+}
+
+@keyframes float-up-down-slow {
+  0%,
+  100% { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-20px) rotate(4deg); }
+}
+
+@keyframes pulse-glow-anim {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(43, 94, 227, 0), 0 10px 30px rgba(43, 94, 227, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(43, 94, 227, 0.12), 0 10px 40px rgba(43, 94, 227, 0.45);
+  }
+}
+
+@keyframes pulse-glow-green {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(24, 159, 45, 0), 0 10px 28px rgba(24, 159, 45, 0.22);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(24, 159, 45, 0.1), 0 10px 40px rgba(24, 159, 45, 0.42);
+  }
+}
+
+@keyframes fade-in-up-anim {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer-slide {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+@keyframes hero-orb-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(18px, -22px) scale(1.06); }
+  66%  { transform: translate(-14px, 12px) scale(0.97); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes hero-orb-drift-b {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-22px, 16px) scale(0.96); }
+  66%  { transform: translate(14px, -20px) scale(1.04); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.8; }
+  25%  { transform: translateY(-12px) translateX(6px) rotate(45deg); opacity: 1; }
+  50%  { transform: translateY(-20px) translateX(-4px) rotate(90deg); opacity: 0.7; }
+  75%  { transform: translateY(-10px) translateX(8px) rotate(135deg); opacity: 0.9; }
+  100% { transform: translateY(0) translateX(0) rotate(180deg); opacity: 0.8; }
+}
+
+@keyframes cube-float-a {
+  0%,
+  100% { transform: rotateX(0deg) rotateY(0deg) translateY(0px); }
+  25%  { transform: rotateX(30deg) rotateY(20deg) translateY(-10px); }
+  50%  { transform: rotateX(10deg) rotateY(45deg) translateY(-16px); }
+  75%  { transform: rotateX(20deg) rotateY(30deg) translateY(-8px); }
+}
+
+@keyframes cube-float-b {
+  0%,
+  100% { transform: rotateX(10deg) rotateY(20deg) translateY(0px); }
+  25%  { transform: rotateX(40deg) rotateY(60deg) translateY(-12px); }
+  50%  { transform: rotateX(20deg) rotateY(10deg) translateY(-20px); }
+  75%  { transform: rotateX(30deg) rotateY(50deg) translateY(-6px); }
+}
+
+/* ----------------------------------------------------------
+   UTILITY CLASSES
+   ---------------------------------------------------------- */
+
+/* 1. Float animation — gentle up/down bobbing */
+.float-animation {
+  animation: float-up-down 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.float-animation--slow {
+  animation: float-up-down-slow 7s ease-in-out infinite;
+}
+
+.float-animation--delay-1 { animation-delay: 0.6s; }
+.float-animation--delay-2 { animation-delay: 1.2s; }
+.float-animation--delay-3 { animation-delay: 1.8s; }
+.float-animation--delay-4 { animation-delay: 2.4s; }
+
+/* 2. Pulse glow — for standalone use on any element */
+.pulse-glow {
+  animation: pulse-glow-anim 2.6s ease-in-out infinite;
+}
+
+.pulse-glow--green {
+  animation: pulse-glow-green 2.6s ease-in-out infinite;
+}
+
+/* 3. Card 3D hover tilt — attach to any card element */
+.card-3d-hover {
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-3d-hover:hover {
+  transform: perspective(1000px) rotateX(3deg) rotateY(3deg) translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 4. Generic 3D button effect — attach to any <button> or <a> */
+.btn-3d {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  will-change: transform;
+}
+
+.btn-3d:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(43, 94, 227, 0.4);
+}
+
+.btn-3d:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(43, 94, 227, 0.2);
+}
+
+.btn-3d--green:hover {
+  box-shadow: 0 10px 30px rgba(24, 159, 45, 0.4);
+}
+
+/* 5. Fade in up — entrance animation */
+.fade-in-up {
+  animation: fade-in-up-anim 0.56s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.fade-in-up--delay-1 { animation-delay: 0.1s; }
+.fade-in-up--delay-2 { animation-delay: 0.2s; }
+.fade-in-up--delay-3 { animation-delay: 0.3s; }
+.fade-in-up--delay-4 { animation-delay: 0.4s; }
+.fade-in-up--delay-5 { animation-delay: 0.5s; }
+.fade-in-up--delay-6 { animation-delay: 0.6s; }
+
+.fade-in-scale {
+  animation: fade-in-scale 0.48s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* 6. Shimmer — loading skeleton effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(200, 210, 230, 0.2) 0%,
+    rgba(200, 210, 230, 0.45) 40%,
+    rgba(200, 210, 230, 0.2) 80%
+  );
+  background-size: 800px 100%;
+  animation: shimmer-slide 1.6s linear infinite;
+}
+
+/* 7. Spin animations for decorative elements */
+.spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+.spin-slow-reverse {
+  animation: spin-slow-reverse 24s linear infinite;
+}
+
+/* ----------------------------------------------------------
+   HERO 3D BACKGROUND SCENE — used by HeroCanvas.jsx
+   ---------------------------------------------------------- */
+
+/* Floating orbs / glowing blobs */
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-orb--a {
+  width: 340px;
+  height: 340px;
+  top: -80px;
+  right: -60px;
+  background: radial-gradient(circle at 40% 40%, rgba(59, 120, 246, 0.22), transparent 70%);
+  animation: hero-orb-drift 12s ease-in-out infinite;
+}
+
+.hero-orb--b {
+  width: 280px;
+  height: 280px;
+  bottom: -60px;
+  left: -40px;
+  background: radial-gradient(circle at 60% 60%, rgba(17, 64, 184, 0.2), transparent 70%);
+  animation: hero-orb-drift-b 14s ease-in-out infinite;
+}
+
+.hero-orb--c {
+  width: 200px;
+  height: 200px;
+  top: 40%;
+  right: 20%;
+  background: radial-gradient(circle at 50% 50%, rgba(100, 160, 255, 0.12), transparent 70%);
+  animation: hero-orb-drift 18s ease-in-out infinite reverse;
+  animation-delay: -4s;
+}
+
+/* CSS 3D floating cubes */
+.hero-cube-scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  perspective: 800px;
+}
+
+.hero-cube {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-cube--a {
+  top: 15%;
+  right: 12%;
+  animation: cube-float-a 8s ease-in-out infinite;
+  opacity: 0.35;
+}
+
+.hero-cube--b {
+  top: 55%;
+  right: 5%;
+  width: 28px;
+  height: 28px;
+  animation: cube-float-b 11s ease-in-out infinite;
+  animation-delay: -3s;
+  opacity: 0.28;
+}
+
+.hero-cube--c {
+  top: 28%;
+  left: 3%;
+  width: 24px;
+  height: 24px;
+  animation: cube-float-a 9s ease-in-out infinite;
+  animation-delay: -5s;
+  opacity: 0.22;
+}
+
+.hero-cube-face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(140, 180, 255, 0.6);
+  background: rgba(80, 130, 240, 0.08);
+}
+
+.hero-cube-face--front  { transform: translateZ(20px); }
+.hero-cube-face--back   { transform: translateZ(-20px) rotateY(180deg); }
+.hero-cube-face--left   { transform: translateX(-20px) rotateY(-90deg); }
+.hero-cube-face--right  { transform: translateX(20px) rotateY(90deg); }
+.hero-cube-face--top    { transform: translateY(-20px) rotateX(90deg); }
+.hero-cube-face--bottom { transform: translateY(20px) rotateX(-90deg); }
+
+/* CSS floating particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(160, 200, 255, 0.55);
+  will-change: transform, opacity;
+}
+
+.hero-particle--1 {
+  width: 5px; height: 5px;
+  top: 20%; left: 8%;
+  animation: particle-drift 6s ease-in-out infinite;
+}
+
+.hero-particle--2 {
+  width: 4px; height: 4px;
+  top: 65%; left: 14%;
+  animation: particle-drift 8s ease-in-out infinite;
+  animation-delay: -2s;
+  background: rgba(120, 180, 255, 0.5);
+}
+
+.hero-particle--3 {
+  width: 6px; height: 6px;
+  top: 35%; right: 18%;
+  animation: particle-drift 7s ease-in-out infinite;
+  animation-delay: -1s;
+}
+
+.hero-particle--4 {
+  width: 3px; height: 3px;
+  top: 75%; right: 25%;
+  animation: particle-drift 9s ease-in-out infinite;
+  animation-delay: -4s;
+  background: rgba(180, 210, 255, 0.6);
+}
+
+.hero-particle--5 {
+  width: 5px; height: 5px;
+  top: 12%; right: 38%;
+  animation: particle-drift 5.5s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.hero-particle--6 {
+  width: 4px; height: 4px;
+  top: 82%; left: 42%;
+  animation: particle-drift 10s ease-in-out infinite;
+  animation-delay: -6s;
+  background: rgba(140, 190, 255, 0.45);
+}
+
+.hero-particle--7 {
+  width: 6px; height: 6px;
+  top: 48%; left: 28%;
+  animation: particle-drift 7.5s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+.hero-particle--8 {
+  width: 3px; height: 3px;
+  top: 55%; right: 12%;
+  animation: particle-drift 8.5s ease-in-out infinite;
+  animation-delay: -5s;
+  background: rgba(200, 220, 255, 0.5);
+}
+
+/* Animated grid lines (subtle depth overlay for hero) */
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(100, 160, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 160, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0, 0, 0, 0.5) 30%, transparent 100%);
+}
+
+/* ----------------------------------------------------------
+   SMOOTH SCROLL
+   ---------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ----------------------------------------------------------
+   REDUCED MOTION — disable all animation utilities
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .float-animation,
+  .float-animation--slow,
+  .pulse-glow,
+  .pulse-glow--green,
+  .fade-in-up,
+  .fade-in-scale,
+  .shimmer,
+  .spin-slow,
+  .spin-slow-reverse,
+  .hero-orb,
+  .hero-cube,
+  .hero-particle {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .card-3d-hover:hover,
+  .btn-3d:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}

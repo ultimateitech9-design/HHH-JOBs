@@ -1,0 +1,113 @@
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getDashboardPathByRole, normalizeRedirectPath, setAuthSession } from '../../../utils/auth';
+import { generateRetiredEmployeeId, generateStudentCandidateId } from '../../../utils/hrIdentity';
+import AuthFormMessage from '../components/AuthFormMessage';
+import AuthPageShell from '../components/AuthPageShell';
+import { oauthBenefits } from '../config/authOptions';
+
+const decodeBase64Url = (value) => {
+  const normalized = String(value || '').replace(/-/g, '+').replace(/_/g, '/');
+  const padding = '='.repeat((4 - (normalized.length % 4)) % 4);
+  return atob(normalized + padding);
+};
+
+const readCallbackParams = (location) => {
+  const params = new URLSearchParams(location.search || '');
+  const hash = String(location.hash || '').replace(/^#/, '');
+
+  if (hash) {
+    const hashParams = new URLSearchParams(hash);
+    hashParams.forEach((value, key) => {
+      params.set(key, value);
+    });
+  }
+
+  return params;
+};
+
+const OAuthCallbackPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const callbackParams = readCallbackParams(location);
+    const shouldScrubUrl = Boolean(location.hash);
+
+    if (shouldScrubUrl && typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
+
+    const token = callbackParams.get('token');
+    const userEncoded = callbackParams.get('user');
+    const redirectTo = callbackParams.get('redirectTo');
+    const providerError = callbackParams.get('error');
+
+    if (providerError) {
+      setError(providerError);
+      return;
+    }
+
+    if (!token || !userEncoded) {
+      setError('Social login response is incomplete. Please try again.');
+      return;
+    }
+
+    try {
+      const decodedUser = JSON.parse(decodeBase64Url(userEncoded));
+      const nextUser = decodedUser?.role === 'student'
+        ? {
+          ...decodedUser,
+          studentCandidateId: decodedUser?.studentCandidateId || generateStudentCandidateId({
+            name: decodedUser?.name || '',
+            mobile: decodedUser?.mobile || decodedUser?.phone || ''
+          })
+        }
+        : decodedUser?.role === 'retired_employee'
+          ? {
+            ...decodedUser,
+            retiredEmployeeId: decodedUser?.retiredEmployeeId || generateRetiredEmployeeId({
+              name: decodedUser?.name || '',
+              mobile: decodedUser?.mobile || decodedUser?.phone || ''
+            })
+          }
+          : decodedUser;
+
+      setAuthSession(token, nextUser);
+      navigate(normalizeRedirectPath(redirectTo || getDashboardPathByRole(nextUser?.role), nextUser?.role), { replace: true });
+    } catch (decodeError) {
+      setError('Unable to process social login response. Please try again.');
+    }
+  }, [location, navigate]);
+
+  return (
+    <AuthPageShell
+      eyebrow="Social Login"
+      title="Finishing Sign In"
+      description={error || 'Please wait while we complete your social login.'}
+      sideTitle="Social callback now uses the same auth shell as the rest of onboarding"
+      sideDescription="The callback step stays simple, but it now matches the modular public-auth structure used throughout the updated pages."
+      benefits={oauthBenefits}
+    >
+      <div className="space-y-5">
+        <AuthFormMessage tone={error ? 'error' : 'info'}>
+          {error || 'Your account data is being normalized and redirected to the correct dashboard.'}
+        </AuthFormMessage>
+
+        {error ? (
+          <div className="flex flex-wrap items-center justify-between gap-3 text-sm font-semibold">
+            <Link to="/login" className="text-brand-700 transition-colors hover:text-brand-800">
+              Back to login
+            </Link>
+            <Link to="/sign-up" className="text-navy transition-colors hover:text-brand-700">
+              Create account manually
+            </Link>
+          </div>
+        ) : null}
+      </div>
+    </AuthPageShell>
+  );
+};
+
+export default OAuthCallbackPage;
