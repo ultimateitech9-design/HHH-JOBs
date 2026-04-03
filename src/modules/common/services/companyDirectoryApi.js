@@ -1,4 +1,15 @@
 import { apiFetch } from '../../../utils/api';
+import { buildCompanyLogoUrl } from './companyLogoUrl';
+
+const COMPANY_BRANDING_OVERRIDES = [
+  {
+    names: ['indian trade mart'],
+    slugs: ['indian-trade-mart'],
+    domains: ['indiantrademart.com', 'www.indiantrademart.com'],
+    logoUrl: 'https://indiantrademart.com/favicon-512x512.png',
+    websiteUrl: 'https://indiantrademart.com/'
+  }
+];
 
 const parseJson = async (response) => {
   try {
@@ -7,6 +18,91 @@ const parseJson = async (response) => {
     return null;
   }
 };
+
+const normalizeKey = (value = '') =>
+  String(value || '')
+    .trim()
+    .toLowerCase();
+
+const pickPreferredText = (...values) => {
+  for (const value of values) {
+    const normalized = String(value || '').trim();
+    if (normalized) return normalized;
+  }
+
+  return '';
+};
+
+const toHostname = (value = '') => {
+  const source = String(value || '').trim();
+  if (!source) return '';
+
+  try {
+    const url = new URL(/^https?:\/\//i.test(source) ? source : `https://${source}`);
+    return normalizeKey(url.hostname);
+  } catch {
+    return '';
+  }
+};
+
+const findCompanyBrandingOverride = (entry = {}) => {
+  const nameKey = normalizeKey(entry.name || entry.companyName);
+  const slugKey = normalizeKey(entry.slug || entry.companySlug);
+  const domainKey = toHostname(entry.websiteUrl || entry.companyWebsite || entry.applyUrl);
+
+  return (
+    COMPANY_BRANDING_OVERRIDES.find((branding) =>
+      branding.names.includes(nameKey)
+      || branding.slugs.includes(slugKey)
+      || branding.domains.includes(domainKey)
+    ) || null
+  );
+};
+
+const normalizeCompanyBranding = (entry) => {
+  if (!entry || typeof entry !== 'object') return entry;
+
+  const branding = findCompanyBrandingOverride(entry);
+  const preferredLogoUrl = buildCompanyLogoUrl(entry.logoUrl, branding?.logoUrl);
+
+  if (!branding) {
+    return {
+      ...entry,
+      logoUrl: preferredLogoUrl || null
+    };
+  }
+
+  return {
+    ...entry,
+    logoUrl: preferredLogoUrl || null,
+    websiteUrl: pickPreferredText(entry.websiteUrl, branding.websiteUrl) || null
+  };
+};
+
+const normalizeCompanyCollection = (companies = []) =>
+  Array.isArray(companies) ? companies.map((company) => normalizeCompanyBranding(company)) : [];
+
+const normalizeCompanyJobs = (jobs = {}) => ({
+  total: Number(jobs?.total || 0),
+  portal: Array.isArray(jobs?.portal)
+    ? jobs.portal.map((job) => {
+        const branding = findCompanyBrandingOverride(job);
+        return {
+          ...job,
+          companyLogo: buildCompanyLogoUrl(job.companyLogo, branding?.logoUrl) || null
+        };
+      })
+    : [],
+  external: Array.isArray(jobs?.external)
+    ? jobs.external.map((job) => {
+        const branding = findCompanyBrandingOverride(job);
+        return {
+          ...job,
+          companyLogo: buildCompanyLogoUrl(job.companyLogo, branding?.logoUrl) || null
+        };
+      })
+    : []
+});
 
 export const getPublicCompanies = async (filters = {}) => {
   const params = new URLSearchParams();
@@ -28,7 +124,7 @@ export const getPublicCompanies = async (filters = {}) => {
 
     return {
       data: {
-        companies: payload?.companies || [],
+        companies: normalizeCompanyCollection(payload?.companies || []),
         summary: payload?.summary || null
       },
       error: ''
@@ -55,7 +151,7 @@ export const getSponsoredCompanies = async () => {
 
     return {
       data: {
-        companies: payload?.companies || [],
+        companies: normalizeCompanyCollection(payload?.companies || []),
         summary: payload?.summary || null
       },
       error: ''
@@ -91,8 +187,8 @@ export const getPublicCompanyDetail = async (companySlug) => {
 
     return {
       data: {
-        company: payload?.company || null,
-        jobs: payload?.jobs || { total: 0, portal: [], external: [] }
+        company: normalizeCompanyBranding(payload?.company || null),
+        jobs: normalizeCompanyJobs(payload?.jobs || { total: 0, portal: [], external: [] })
       },
       error: ''
     };

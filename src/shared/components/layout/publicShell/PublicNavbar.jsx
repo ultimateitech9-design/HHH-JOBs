@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import { getPublicJobsNavPath } from '../../../../modules/common/utils/publicAccess';
+import { isExternalHref } from '../../../utils/externalLinks.js';
 import { getPublicNavItems } from './publicNavigation';
 
 const pathMatches = (pathname, matchers = []) => matchers.some((matcher) => matcher.test(pathname));
@@ -11,7 +13,7 @@ const PublicNavbar = ({ dashboardPath, onLogout, user }) => {
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const location = useLocation();
 
-  const jobsNavPath = '/jobs';
+  const jobsNavPath = getPublicJobsNavPath(Boolean(user));
 
   const publicNavItems = useMemo(
     () => getPublicNavItems({ jobsNavPath }),
@@ -106,6 +108,12 @@ const PublicNavbar = ({ dashboardPath, onLogout, user }) => {
                       >
                         {link.children.map((child, index) => {
                           const isChildActive = isNavItemActive(child);
+                          const isExternal = isExternalHref(child.to);
+                          const className = `block rounded-2xl px-3 py-2 text-sm transition-all ${
+                            isChildActive
+                              ? 'bg-brand-50 text-navy'
+                              : 'text-slate-500 hover:bg-gold/5 hover:text-navy'
+                          }`;
 
                           return (
                             <motion.div
@@ -114,17 +122,23 @@ const PublicNavbar = ({ dashboardPath, onLogout, user }) => {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: index * 0.05 }}
                             >
-                              <Link
-                                to={child.to}
-                                onClick={() => setDropdownOpen(null)}
-                                className={`block rounded-2xl px-3 py-2 text-sm transition-all ${
-                                  isChildActive
-                                    ? 'bg-brand-50 text-navy'
-                                    : 'text-slate-500 hover:bg-gold/5 hover:text-navy'
-                                }`}
-                              >
-                                {child.label}
-                              </Link>
+                              {isExternal ? (
+                                <a
+                                  href={child.to}
+                                  onClick={() => setDropdownOpen(null)}
+                                  className={className}
+                                >
+                                  {child.label}
+                                </a>
+                              ) : (
+                                <Link
+                                  to={child.to}
+                                  onClick={() => setDropdownOpen(null)}
+                                  className={className}
+                                >
+                                  {child.label}
+                                </Link>
+                              )}
                             </motion.div>
                           );
                         })}
@@ -135,21 +149,39 @@ const PublicNavbar = ({ dashboardPath, onLogout, user }) => {
               );
             }
 
+            const isExternal = isExternalHref(link.to);
+            const className = `group relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+              isActive ? 'text-navy' : 'text-slate-500 hover:text-navy'
+            }`;
+
             return (
-              <Link
-                key={link.key}
-                to={link.to}
-                className={`group relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  isActive ? 'text-navy' : 'text-slate-500 hover:text-navy'
-                }`}
-              >
-                {link.label}
-                <span
-                  className={`absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-gold transition-all duration-300 ${
-                    isActive ? 'w-4/5' : 'w-0 group-hover:w-4/5'
-                  }`}
-                />
-              </Link>
+              isExternal ? (
+                <a
+                  key={link.key}
+                  href={link.to}
+                  className={className}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-gold transition-all duration-300 ${
+                      isActive ? 'w-4/5' : 'w-0 group-hover:w-4/5'
+                    }`}
+                  />
+                </a>
+              ) : (
+                <Link
+                  key={link.key}
+                  to={link.to}
+                  className={className}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-gold transition-all duration-300 ${
+                      isActive ? 'w-4/5' : 'w-0 group-hover:w-4/5'
+                    }`}
+                  />
+                </Link>
+              )
             );
           })}
         </nav>
@@ -226,25 +258,43 @@ const PublicNavbar = ({ dashboardPath, onLogout, user }) => {
                       <p className="px-3 py-2 text-sm font-semibold text-navy">{link.label}</p>
                       {link.children.map((child) => {
                         const isChildActive = isNavItemActive(child);
+                        const isExternal = isExternalHref(child.to);
+                        const className = `block rounded-2xl px-6 py-2 text-sm transition-colors ${
+                          isChildActive
+                            ? 'bg-brand-50 text-navy'
+                            : 'text-slate-500 hover:bg-slate-50 hover:text-navy'
+                        }`;
 
                         return (
-                          <Link
-                            key={child.key}
-                            to={child.to}
-                            onClick={() => setIsMenuOpen(false)}
-                            className={`block rounded-2xl px-6 py-2 text-sm transition-colors ${
-                              isChildActive
-                                ? 'bg-brand-50 text-navy'
-                                : 'text-slate-500 hover:bg-slate-50 hover:text-navy'
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
+                          isExternal ? (
+                            <a
+                              key={child.key}
+                              href={child.to}
+                              onClick={() => setIsMenuOpen(false)}
+                              className={className}
+                            >
+                              {child.label}
+                            </a>
+                          ) : (
+                            <Link
+                              key={child.key}
+                              to={child.to}
+                              onClick={() => setIsMenuOpen(false)}
+                              className={className}
+                            >
+                              {child.label}
+                            </Link>
+                          )
                         );
                       })}
                     </motion.div>
                   );
                 }
+
+                const isExternal = isExternalHref(link.to);
+                const className = `block rounded-2xl px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive ? 'bg-brand-50 text-navy' : 'text-slate-600 hover:bg-slate-50 hover:text-navy'
+                }`;
 
                 return (
                   <motion.div
@@ -253,15 +303,23 @@ const PublicNavbar = ({ dashboardPath, onLogout, user }) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    <Link
-                      to={link.to}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`block rounded-2xl px-3 py-2 text-sm font-medium transition-colors ${
-                        isActive ? 'bg-brand-50 text-navy' : 'text-slate-600 hover:bg-slate-50 hover:text-navy'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
+                    {isExternal ? (
+                      <a
+                        href={link.to}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={className}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.to}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={className}
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </motion.div>
                 );
               })}

@@ -1,3 +1,5 @@
+import { BLOG_BASE_URL } from '../../../shared/utils/externalLinks.js';
+
 export const FOOTER_LINK_COLUMNS = [
   {
     title: '',
@@ -7,7 +9,7 @@ export const FOOTER_LINK_COLUMNS = [
       { label: 'Careers', to: '/careers', key: 'careers' },
       { label: 'Employer home', to: '/employer-home', key: 'employer-home' },
       { label: 'Sitemap', to: '/sitemap', key: 'sitemap' },
-      { label: 'Blogs', to: '/blog', key: 'blog' }
+      { label: 'Blogs', to: BLOG_BASE_URL, key: 'blog' }
     ]
   },
   {

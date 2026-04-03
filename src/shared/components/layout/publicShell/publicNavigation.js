@@ -1,3 +1,5 @@
+import { BLOG_BASE_URL } from '../../../utils/externalLinks.js';
+
 export const getPublicNavItems = ({ jobsNavPath }) => [
   {
     key: 'home',
@@ -61,7 +63,7 @@ export const getPublicNavItems = ({ jobsNavPath }) => [
   },
   {
     key: 'blog',
-    to: '/blog',
+    to: BLOG_BASE_URL,
     label: 'Blog',
     matchers: [/^\/blog(?:\/.*)?$/]
   },

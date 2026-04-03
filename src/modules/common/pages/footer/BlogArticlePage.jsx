@@ -1,21 +1,31 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import FooterContentPage from '../FooterContentPage';
-import { BLOG_ARTICLE_PAGE_KEY_BY_SLUG } from '../footerPages';
+import { useEffect, useMemo } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { buildBlogUrl } from '../../../../shared/utils/externalLinks.js';
 
 const BlogArticlePage = () => {
   const { slug = '' } = useParams();
-  const pageKey = BLOG_ARTICLE_PAGE_KEY_BY_SLUG[String(slug).trim().toLowerCase()] || '';
+  const location = useLocation();
+  const targetUrl = useMemo(
+    () => buildBlogUrl({ slug, search: location.search, hash: location.hash }),
+    [location.hash, location.search, slug]
+  );
 
   useEffect(() => {
-    if (!pageKey && typeof window !== 'undefined') {
-      window.location.replace('https://blog.hhh-jobs.com');
+    if (typeof window !== 'undefined') {
+      window.location.replace(targetUrl);
     }
-  }, [pageKey]);
+  }, [targetUrl]);
 
-  if (!pageKey) return null;
-
-  return <FooterContentPage pageKey={pageKey} />;
+  return (
+    <div className="mx-auto flex min-h-[320px] max-w-3xl items-center justify-center px-4 py-16 text-center">
+      <a
+        href={targetUrl}
+        className="inline-flex rounded-full bg-navy px-5 py-3 text-sm font-semibold text-white"
+      >
+        Open article on HHH Jobs Blog
+      </a>
+    </div>
+  );
 };
 
 export default BlogArticlePage;

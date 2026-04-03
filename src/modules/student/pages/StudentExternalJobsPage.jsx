@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   FiArrowUpRight,
   FiBriefcase,
@@ -22,6 +22,7 @@ import {
 import useAuthStore from '../../../core/auth/authStore';
 import SectionHeader from '../../../shared/components/SectionHeader';
 import { getExternalJobCategories, getExternalJobSources, getExternalJobs } from '../../platform/services/externalJobsApi';
+import { getLoginRedirectState, shouldLockJobBoards } from '../../common/utils/publicAccess';
 import {
   clearExternalApplyIntent,
   isExternalApplyIntentFresh,
@@ -233,7 +234,7 @@ const ExternalJobCard = ({ isAuthenticated, job, onApply, sourceMap }) => {
         <div className="mt-3 flex items-center justify-between gap-3 text-[12px] text-slate-500">
           <span className="inline-flex items-center gap-1.5">
             {isAuthenticated ? <FiArrowUpRight size={13} /> : <FiShield size={13} />}
-            {isAuthenticated ? 'Official company site' : 'Login required before apply'}
+            {isAuthenticated ? 'Verified apply destination' : 'Login required before apply'}
           </span>
           <span className="font-semibold text-slate-400">{sourceName}</span>
         </div>
@@ -245,6 +246,7 @@ const ExternalJobCard = ({ isAuthenticated, job, onApply, sourceMap }) => {
 const StudentExternalJobsPage = () => {
   const { user } = useAuthStore();
   const isAuthenticated = Boolean(user);
+  const isJobBoardLocked = shouldLockJobBoards(isAuthenticated);
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -301,10 +303,20 @@ const StudentExternalJobsPage = () => {
   }, []);
 
   useEffect(() => {
+    if (isJobBoardLocked) {
+      setJobsState({ jobs: [], pagination: null, loading: false, error: '' });
+      return;
+    }
     loadJobs(filters);
-  }, [filters, loadJobs]);
+  }, [filters, isJobBoardLocked, loadJobs]);
 
   useEffect(() => {
+    if (isJobBoardLocked) {
+      setCategories([]);
+      setSources([]);
+      return undefined;
+    }
+
     let mounted = true;
 
     const loadMeta = async () => {
@@ -329,7 +341,7 @@ const StudentExternalJobsPage = () => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [isJobBoardLocked]);
 
   const hasFilters = useMemo(
     () => Boolean(filters.search || filters.category || filters.location || filters.source || filters.remote),
@@ -391,10 +403,7 @@ const StudentExternalJobsPage = () => {
 
       toast('Login first to continue your application.');
       navigate('/login', {
-        state: {
-          from: currentPath,
-          portalLabel: 'Login to Apply'
-        }
+        state: getLoginRedirectState(currentPath, 'Login to Apply')
       });
       return;
     }
@@ -402,6 +411,72 @@ const StudentExternalJobsPage = () => {
     setResumeApplyIntent(null);
     openApplyDestination(applyUrl);
   };
+
+  if (isJobBoardLocked) {
+    return (
+      <div className="mx-auto w-full max-w-[1680px] px-4 py-8 md:px-6 xl:px-8">
+        <section className="relative overflow-hidden rounded-[38px] border border-amber-200 bg-[linear-gradient(135deg,rgba(255,247,237,0.96),rgba(255,255,255,0.96)_48%,rgba(240,249,255,0.92))] p-6 shadow-[0_28px_80px_rgba(245,158,11,0.14)] md:p-8 xl:p-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.18),transparent_30%),radial-gradient(circle_at_85%_15%,rgba(14,165,233,0.12),transparent_24%),linear-gradient(180deg,transparent,rgba(255,255,255,0.2))]" />
+
+          <div className="relative z-10 grid gap-8 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] xl:items-start">
+            <div>
+              <SectionHeader
+                eyebrow="Protected Jobs Board"
+                title="Login before the global jobs board unlocks"
+                subtitle="International and remote jobs are no longer public for browsing. Search, filters, live roles, and apply actions stay hidden until the member signs in."
+              />
+
+              <div className="flex flex-wrap gap-3">
+                <span className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700">
+                  <FiLock size={15} />
+                  Job board locked for guests
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-600">
+                  <FiShield size={15} />
+                  Company sites stay hidden
+                </span>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  to="/login"
+                  state={getLoginRedirectState(currentPath, 'Login to Apply')}
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 via-amber-500 to-orange-500 px-5 py-3 text-sm font-black text-white shadow-[0_18px_36px_rgba(245,158,11,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_44px_rgba(245,158,11,0.34)]"
+                >
+                  <FiLock size={15} />
+                  Login to Unlock Jobs
+                </Link>
+                <Link
+                  to="/sign-up"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-brand-300 hover:text-brand-700"
+                >
+                  Create Account
+                  <FiArrowUpRight size={15} />
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-[28px] border border-white/80 bg-white/80 p-5 shadow-[0_20px_40px_rgba(15,23,42,0.06)] backdrop-blur">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Search</p>
+                <p className="mt-3 font-heading text-4xl font-black text-navy">Locked</p>
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  Keyword, location, category, and source filters open only after login.
+                </p>
+              </div>
+              <div className="rounded-[28px] border border-white/80 bg-white/80 p-5 shadow-[0_20px_40px_rgba(15,23,42,0.06)] backdrop-blur">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Apply Flow</p>
+                <p className="mt-3 font-heading text-4xl font-black text-navy">Protected</p>
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  Verified apply destinations are revealed only for authenticated members.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto w-full max-w-[1680px] px-4 py-8 md:px-6 xl:px-8">

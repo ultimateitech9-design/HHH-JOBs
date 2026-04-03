@@ -17,6 +17,7 @@ const FooterBottomBar = () => {
           const Icon = item.icon;
           const isExternal = item.href.startsWith('http');
           const isInternal = item.href.startsWith('/');
+          const shouldOpenInNewTab = isExternal && item.newTab !== false;
 
           if (isInternal) {
             return (
@@ -37,8 +38,8 @@ const FooterBottomBar = () => {
               href={item.href}
               whileHover={{ y: -2 }}
               className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-[13px] text-white/54 transition-colors hover:border-gold/30 hover:text-gold"
-              target={isExternal ? '_blank' : undefined}
-              rel={isExternal ? 'noreferrer' : undefined}
+              target={shouldOpenInNewTab ? '_blank' : undefined}
+              rel={shouldOpenInNewTab ? 'noreferrer' : undefined}
             >
               <Icon className="h-4 w-4" />
               <span>{item.label}</span>

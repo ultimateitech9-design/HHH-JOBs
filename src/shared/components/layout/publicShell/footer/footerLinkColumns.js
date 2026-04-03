@@ -1,3 +1,5 @@
+import { BLOG_BASE_URL } from '../../../../utils/externalLinks.js';
+
 export const footerLinkColumns = [
   {
     title: 'Job Seekers',
@@ -6,7 +8,7 @@ export const footerLinkColumns = [
       { label: 'For Freshers', to: '/freshers' },
       { label: 'For Veterans', to: '/veterans' },
       { label: 'Browse Jobs', to: '/jobs' },
-      { label: 'Career Resources', to: '/blog' },
+      { label: 'Career Resources', to: BLOG_BASE_URL },
       { label: 'Resume ATS', to: '/ats' }
     ]
   },
@@ -27,7 +29,7 @@ export const footerLinkColumns = [
       { label: 'About Us', to: '/about-us' },
       { label: 'Contact Us', to: '/contact-us' },
       { label: 'Careers', to: '/careers' },
-      { label: 'Blog', to: '/blog' },
+      { label: 'Blog', to: BLOG_BASE_URL },
       { label: 'Sitemap', to: '/sitemap' }
     ]
   },

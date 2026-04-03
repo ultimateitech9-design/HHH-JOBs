@@ -1,8 +1,10 @@
-import { clearAuthSession, getToken } from './auth';
+import { clearAuthSession, getToken } from './auth.js';
+
+const env = import.meta.env || {};
 
 const configuredApiBase =
-  import.meta.env.VITE_API_BASE_URL
-  || import.meta.env.VITE_API_URL
+  env.VITE_API_BASE_URL
+  || env.VITE_API_URL
   || '';
 
 const isLocalOrigin = (value = '') => /^(https?:\/\/)?(localhost|127\.0\.0\.1)(:\d+)?$/i.test(String(value).trim());
@@ -27,7 +29,7 @@ const shouldIgnoreConfiguredLocalhost =
   && isLocalOrigin(configuredApiBase);
 
 const runtimeFallbackBase = deriveLocalRuntimeBase(browserOrigin)
-  || (import.meta.env.DEV ? 'http://localhost:5500' : (browserOrigin || 'http://localhost:5500'));
+  || (env.DEV ? 'http://localhost:5500' : (browserOrigin || 'http://localhost:5500'));
 
 export const API_BASE_URL = String(
   shouldIgnoreConfiguredLocalhost ? runtimeFallbackBase : (configuredApiBase || runtimeFallbackBase)
@@ -39,7 +41,7 @@ export const apiUrl = (path = '') => {
 };
 
 export const areDemoFallbacksEnabled = () =>
-  String(import.meta.env.VITE_ENABLE_DEMO_FALLBACKS || '').trim().toLowerCase() === 'true';
+  String(env.VITE_ENABLE_DEMO_FALLBACKS || '').trim().toLowerCase() === 'true';
 
 const hasUsableApiToken = (token) =>
   Boolean(token) && !/^(managed-|local-|pending-)/i.test(String(token));
