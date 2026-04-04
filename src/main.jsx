@@ -6,6 +6,9 @@ import './index.css';
 import './styles/globals.css';
 import './styles/animations.css';
 import router from './app/router';
+import { installChunkLoadRecovery } from './shared/utils/chunkLoadRecovery';
+
+installChunkLoadRecovery();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <HelmetProvider>

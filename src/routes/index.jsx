@@ -1,7 +1,10 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
+import { useLocation } from 'react-router-dom';
 import RootLayout from '../shared/components/layout/RootLayout';
+import RouteErrorBoundary from '../shared/components/feedback/RouteErrorBoundary';
+import { clearChunkRecoveryAttempt } from '../shared/utils/chunkLoadRecovery';
 
 import publicRoutes from './publicRoutes';
 import studentRoutes from './studentRoutes';
@@ -18,6 +21,16 @@ import retiredRoutes from './retiredRoutes';
 
 const ManagementPortalPage = lazy(() => import('../modules/common/pages/ManagementPortalPage'));
 
+const ChunkRecoveryReady = ({ children }) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    clearChunkRecoveryAttempt(location.pathname);
+  }, [location.pathname]);
+
+  return children;
+};
+
 const SuspenseWrapper = ({ children }) => (
   <Suspense
     fallback={
@@ -26,13 +39,14 @@ const SuspenseWrapper = ({ children }) => (
       </div>
     }
   >
-    {children}
+    <ChunkRecoveryReady>{children}</ChunkRecoveryReady>
   </Suspense>
 );
 
 const router = createBrowserRouter([
   {
     path: '/management',
+    errorElement: <RouteErrorBoundary />,
     element: (
       <SuspenseWrapper>
         <ManagementPortalPage />
@@ -41,6 +55,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
+    errorElement: <RouteErrorBoundary />,
     element: <RootLayout />,
     children: [
       ...adminRoutes,
