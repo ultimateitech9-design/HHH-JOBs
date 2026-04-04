@@ -48,8 +48,8 @@ export function HeroSection({ filters, onFiltersChange, onSearch, onKeywordChipC
               transition={{ duration: 0.6, delay: 0.16 }}
               className="mt-6 max-w-xl text-lg leading-8 text-slate-600"
             >
-              A trusted job portal for students, professionals, retired employees, and recruiters. Keep the same
-              HHH Jobs modules, but with the same public UI and visual hierarchy as your reference app.
+              A trusted job portal for students, professionals, retired employees, and recruiters. Discover
+              opportunities, hiring support, and public guidance inside a cleaner, more professional experience.
             </motion.p>
 
             <motion.div

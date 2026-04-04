@@ -56,7 +56,7 @@ const FooterContactChannels = () => {
                     className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-teal-100 hover:bg-teal-50 hover:text-teal-700"
                   >
                     <span>{item.region}</span>
-                    <span className="text-xs font-medium uppercase tracking-[0.18em]">{item.email}</span>
+                    <span className="text-xs font-medium lowercase tracking-normal">{item.email}</span>
                   </a>
                 ))}
               </div>
@@ -86,7 +86,7 @@ const FooterContactChannels = () => {
               <FiBriefcase size={20} />
             </div>
             <h3 className="mt-5 font-heading text-xl font-bold text-navy">Careers & HR</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">For hiring into the HHH Jobs team and internal HR communication.</p>
+            <p className="mt-3 text-sm leading-7 text-slate-600">For career opportunities with HHH Jobs and team-related professional enquiries.</p>
             <a href="mailto:hr@hhh-jobs.com" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-orange-700">
               <FiMail size={16} />
               hr@hhh-jobs.com

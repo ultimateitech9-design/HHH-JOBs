@@ -32,9 +32,9 @@ const FooterGenericTemplate = ({ pageKey, pageData, relatedLinks }) => {
         description={pageData.summary}
         chips={chips}
         metrics={[
-          { value: `${pageData.sections?.length || 0}`, label: 'Content blocks', helper: 'Structured modules used to cover the full topic.' },
-          { value: pageData.eyebrow || 'Info', label: 'Page type', helper: 'Aligned to the shared footer/public content system.' },
-          { value: `${relatedLinks.length}`, label: 'Related links', helper: 'Cross-navigation across support, policy, and public pages.' }
+          { value: `${pageData.sections?.length || 0}`, label: 'Key sections', helper: 'Focused blocks that explain the topic clearly.' },
+          { value: pageData.eyebrow || 'Info', label: 'Page focus', helper: 'Support, policy, company, or insight-led content.' },
+          { value: `${relatedLinks.length}`, label: 'Related links', helper: 'Useful next pages connected to the same topic.' }
         ]}
         actions={[
           { label: ctaActions[0].label, to: ctaActions[0].to, variant: 'primary' },
@@ -47,11 +47,11 @@ const FooterGenericTemplate = ({ pageKey, pageData, relatedLinks }) => {
           <div>
             <PublicSectionHeader
               eyebrow={pageData.eyebrow}
-              title={sectionMode === 'article' ? 'Featured content modules' : 'Detailed page modules'}
+              title={sectionMode === 'article' ? 'Featured reads' : 'What you need to know'}
               description={
                 sectionMode === 'article'
-                  ? 'Article previews and long-form resources now follow the same card system used across the rest of the public experience.'
-                  : 'Informational, legal, and support pages now render through the same shared module system for consistent scaling.'
+                  ? 'Explore practical guidance written to support smarter career and hiring decisions.'
+                  : 'This page brings together the essential context, guidance, and next steps in one place.'
               }
             />
 
@@ -77,11 +77,11 @@ const FooterGenericTemplate = ({ pageKey, pageData, relatedLinks }) => {
           <div className="lg:sticky lg:top-24 lg:self-start">
             <FooterPageAside
               relatedLinks={relatedLinks}
-              title={pageKey === 'blog' ? 'Need platform guidance?' : 'Explore adjacent modules'}
+              title={pageKey === 'blog' ? 'Need more guidance?' : 'Explore related pages'}
               description={
                 pageKey === 'blog'
-                  ? 'Move from learning content into support pages, service plans, or direct contact when you are ready to act.'
-                  : 'Use sidebar navigation to move across related policy, support, and discovery pages without leaving the shared public shell.'
+                  ? 'Move from insight to action with the right support, service, or company pages.'
+                  : 'Use these nearby pages to continue with support, policy, or hiring information that matches your next step.'
               }
             />
           </div>
@@ -91,10 +91,10 @@ const FooterGenericTemplate = ({ pageKey, pageData, relatedLinks }) => {
       <section className="px-4">
         <div className="container mx-auto max-w-7xl">
           <PublicCallToAction
-            eyebrow="Shared Public Pattern"
-            title="Every footer-driven page now follows the same component-based page system"
-            description="That keeps the public product closer to the reference dashboard/page style while preserving HHH Jobs-specific content and routes."
-            chips={['Reusable hero', 'Shared section cards', 'Enterprise file structure']}
+            eyebrow="Next Step"
+            title={pageKey === 'blog' ? 'Turn insight into action on HHH Jobs' : 'Continue to the right next page with confidence'}
+            description="Explore support, services, and company information through a public experience designed to stay clear and easy to navigate."
+            chips={['Clear guidance', 'Trusted support', 'Relevant next steps']}
             actions={ctaActions}
             tone={pageKey === 'privacy-policy' || pageKey === 'terms-and-conditions' ? 'light' : 'dark'}
           />

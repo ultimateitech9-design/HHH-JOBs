@@ -28,8 +28,8 @@ const FooterReportIssueTemplate = ({ pageData, relatedLinks }) => {
         <div className="container mx-auto max-w-7xl">
           <PublicSectionHeader
             eyebrow="Issue Handling"
-            title="A dedicated reporting module with clearer intake and escalation structure"
-            description="This replaces the previous monolithic page with a split layout: guidance on one side, issue intake on the other, and shared sidebar navigation for the rest of the public support stack."
+            title="Report concerns clearly so our team can review them faster"
+            description="Share the issue, affected page, and any supporting detail so our team can investigate efficiently and respond with the right action."
             centered
           />
 
@@ -72,7 +72,7 @@ const FooterReportIssueTemplate = ({ pageData, relatedLinks }) => {
             <FooterPageAside
               relatedLinks={relatedLinks}
               title="Need a policy route instead?"
-              description="Use the sidebar to move into grievances, trust & safety, or direct support flows depending on the issue type."
+              description="Use the sidebar to move into grievances, trust and safety, or direct support depending on the nature of your concern."
             />
           </div>
         </div>
@@ -81,10 +81,10 @@ const FooterReportIssueTemplate = ({ pageData, relatedLinks }) => {
       <section className="px-4">
         <div className="container mx-auto max-w-7xl">
           <PublicCallToAction
-            eyebrow="Community Quality"
-            title="Support, safety, and reporting now share one modular public system"
-            description="This keeps HHH Jobs easier to scale page-by-page while matching the reference project’s cleaner module separation."
-            chips={['Separate components', 'Shared public layout', 'Cleaner maintenance']}
+            eyebrow="Safe Platform"
+            title="Help us keep HHH Jobs reliable, respectful, and secure"
+            description="Timely reports help us review issues faster, protect users, and improve the overall hiring experience."
+            chips={['Clear reporting', 'Timely review', 'User protection']}
             actions={[
               { label: 'Open Grievances', to: '/grievances' },
               { label: 'View Help Center', to: '/help-center' }

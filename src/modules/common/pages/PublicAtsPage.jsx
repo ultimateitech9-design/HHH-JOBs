@@ -4,38 +4,6 @@ import { apiFetch } from '../../../utils/api';
 import './PublicAtsPage.css';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const keywordPool = ['react', 'node', 'sql', 'api', 'javascript', 'typescript', 'docker', 'aws', 'git', 'communication'];
-
-const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)));
-
-const localEstimate = (resumeText = '') => {
-  const text = String(resumeText || '').toLowerCase();
-  const words = text.split(/\s+/).filter(Boolean);
-  const keywordMatches = keywordPool.filter((word) => text.includes(word));
-  const missing = keywordPool.filter((word) => !keywordMatches.includes(word)).slice(0, 6);
-  const metricsCount = (text.match(/\b\d+%?\b/g) || []).length;
-  const hasSections = ['experience', 'skills', 'education', 'projects'].filter((x) => text.includes(x)).length;
-
-  const keywordScore = clamp(30 + (keywordMatches.length / keywordPool.length) * 70);
-  const formatScore = clamp(35 + (words.length > 180 ? 20 : 0) + (hasSections >= 3 ? 25 : hasSections * 7));
-  const similarityScore = clamp(30 + Math.min(metricsCount, 10) * 6);
-  const score = clamp((keywordScore * 0.45) + (formatScore * 0.25) + (similarityScore * 0.3));
-
-  return {
-    score,
-    keywordScore,
-    similarityScore,
-    formatScore,
-    matchedKeywords: keywordMatches,
-    missingKeywords: missing,
-    suggestions: [
-      'Role-specific keywords ko experience bullets me naturally add karo.',
-      'Har project/experience me measurable impact (%, count, time saved) add karo.',
-      'Resume sections clean headings ke saath rakho: Summary, Skills, Experience, Projects.'
-    ],
-    warnings: words.length < 120 ? ['Resume text kaafi short hai, detail add karna useful rahega.'] : []
-  };
-};
 
 const ScoreCard = ({ label, value }) => (
   <article className="public-ats-metric-card">
@@ -48,36 +16,55 @@ const ScoreCard = ({ label, value }) => (
 );
 
 const PublicAtsPage = () => {
-  const [form, setForm] = useState({ resumeText: '', resumeUrl: '', fileName: '' });
+  const [form, setForm] = useState({
+    jobTitle: '',
+    targetText: '',
+    resumeText: '',
+    resumeUrl: '',
+    fileName: ''
+  });
   const [result, setResult] = useState(null);
   const [message, setMessage] = useState({ type: '', text: '' });
   const [isRunning, setIsRunning] = useState(false);
 
   const runCheck = async (payload = form) => {
     if (!String(payload.resumeText || '').trim() && !String(payload.resumeUrl || '').trim()) {
-      setMessage({ type: 'error', text: 'Pehle resume upload karo.' });
+      setMessage({ type: 'error', text: 'Upload your resume before running the ATS review.' });
+      return;
+    }
+
+    if (!String(payload.jobTitle || '').trim() && !String(payload.targetText || '').trim()) {
+      setMessage({ type: 'error', text: 'Add a target job title or job description before running the ATS review.' });
       return;
     }
 
     setIsRunning(true);
     setMessage({ type: '', text: '' });
     try {
-      const response = await apiFetch('/ats/check-preview', {
+      const response = await apiFetch('/ats/public-preview', {
         method: 'POST',
         body: JSON.stringify({
           source: 'new_resume_upload',
+          jobTitle: payload.jobTitle,
+          targetText: payload.targetText,
           resumeText: payload.resumeText,
-          resumeUrl: payload.resumeUrl,
-          targetText: ''
+          resumeUrl: payload.resumeUrl
         })
       });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data?.result) throw new Error('Live ATS unavailable');
+
+      if (!response.ok || !data?.result) {
+        throw new Error(data?.message || 'ATS review could not be completed right now.');
+      }
+
       setResult(data.result);
-      setMessage({ type: 'success', text: 'ATS check complete.' });
+      setMessage({
+        type: 'success',
+        text: `ATS review completed${payload.jobTitle ? ` for ${payload.jobTitle}` : ''}.`
+      });
     } catch (error) {
-      setResult(localEstimate(payload.resumeText));
-      setMessage({ type: 'info', text: 'Live ATS unavailable tha, local estimate show kiya gaya hai.' });
+      setResult(null);
+      setMessage({ type: 'error', text: error.message || 'ATS review could not be completed right now.' });
     } finally {
       setIsRunning(false);
     }
@@ -86,6 +73,7 @@ const PublicAtsPage = () => {
   const onFileChange = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
+
     const fileName = String(file.name || '').toLowerCase();
     const fileType = String(file.type || '').toLowerCase();
     const isAllowed = (
@@ -100,13 +88,13 @@ const PublicAtsPage = () => {
     );
 
     if (!isAllowed) {
-      setMessage({ type: 'error', text: 'Sirf PDF, DOC, DOCX, TXT allowed hai.' });
+      setMessage({ type: 'error', text: 'Only PDF, DOC, DOCX, and TXT files are supported.' });
       event.target.value = '';
       return;
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      setMessage({ type: 'error', text: 'File size 5MB se kam rakho.' });
+      setMessage({ type: 'error', text: 'Please keep the file size below 5MB.' });
       event.target.value = '';
       return;
     }
@@ -115,18 +103,23 @@ const PublicAtsPage = () => {
     reader.onload = () => {
       const content = reader.result;
       if (typeof content !== 'string') {
-        setMessage({ type: 'error', text: 'File read error.' });
+        setMessage({ type: 'error', text: 'The file could not be read. Please try another copy.' });
         return;
       }
 
       const isTxt = fileType.includes('text/plain') || fileName.endsWith('.txt');
-      const next = {
+      setForm((current) => ({
+        ...current,
         resumeText: isTxt ? content : '',
         resumeUrl: isTxt ? '' : content,
         fileName: file.name
-      };
-      setForm(next);
-      runCheck(next);
+      }));
+      setResult(null);
+      setMessage({ type: 'success', text: 'Resume attached. Add the target role details and run the ATS review.' });
+    };
+
+    reader.onerror = () => {
+      setMessage({ type: 'error', text: 'The file could not be read. Please try another copy.' });
     };
 
     if (fileType.includes('text/plain') || fileName.endsWith('.txt')) {
@@ -141,12 +134,36 @@ const PublicAtsPage = () => {
       <section className="public-ats-hero">
         <div>
           <p className="public-ats-tag">Free ATS Check</p>
-          <h1>Upload Your Resume, Get Your ATS Score Instantly</h1>
-          <p className="public-ats-sub">Anyone can check ATS here without a login.</p>
+          <h1>Upload Your Resume and Review Your ATS Readiness</h1>
+          <p className="public-ats-sub">
+            Score your resume against a target job title and get clear suggestions on what to improve before you apply.
+          </p>
           <div className="public-ats-badges">
-            <span>Instant analysis</span>
-            <span>No signup needed</span>
-            <span>Actionable suggestions</span>
+            <span>Role-based scoring</span>
+            <span>No sign-up required</span>
+            <span>Actionable improvements</span>
+          </div>
+
+          <div className="public-ats-criteria">
+            <label className="public-ats-field">
+              <span>Target Job Title</span>
+              <input
+                type="text"
+                value={form.jobTitle}
+                onChange={(event) => setForm((current) => ({ ...current, jobTitle: event.target.value }))}
+                placeholder="Example: Frontend React Developer"
+              />
+            </label>
+
+            <label className="public-ats-field public-ats-field--full">
+              <span>Job Description or Key Requirements</span>
+              <textarea
+                rows={4}
+                value={form.targetText}
+                onChange={(event) => setForm((current) => ({ ...current, targetText: event.target.value }))}
+                placeholder="Optional but recommended: add the main skills, tools, and responsibilities from the job description."
+              />
+            </label>
           </div>
         </div>
 
@@ -164,7 +181,7 @@ const PublicAtsPage = () => {
           />
           <button type="button" disabled={isRunning} onClick={() => runCheck()} className="public-ats-btn">
             <FiActivity />
-            {isRunning ? 'Checking...' : 'Run ATS Check'}
+            {isRunning ? 'Reviewing...' : 'Run ATS Review'}
           </button>
         </div>
       </section>
@@ -174,7 +191,7 @@ const PublicAtsPage = () => {
       {!result ? (
         <section className="public-ats-empty">
           <FiUploadCloud />
-          <p>Your ATS report will appear here right after you upload your resume.</p>
+          <p>Your ATS summary will appear here after you upload the resume and enter the target role details.</p>
         </section>
       ) : null}
 
@@ -182,7 +199,7 @@ const PublicAtsPage = () => {
         <section className="public-ats-result">
           <article className="public-ats-score">
             <strong>{Number(result.score || 0)}%</strong>
-            <span>Overall ATS Score</span>
+            <span>{result.targetRole ? `${result.targetRole} ATS Score` : 'Overall ATS Score'}</span>
           </article>
           <ScoreCard label="Keyword" value={result.keywordScore} />
           <ScoreCard label="Similarity" value={result.similarityScore} />
@@ -193,23 +210,25 @@ const PublicAtsPage = () => {
       {result ? (
         <section className="public-ats-lists">
           <article>
-            <h3><FiCheckCircle /> Suggestions</h3>
+            <h3><FiCheckCircle /> Recommendations</h3>
             <ul>
-              {(result.suggestions || []).map((item) => <li key={item}>{item}</li>)}
+              {(result.suggestions || []).length
+                ? result.suggestions.map((item) => <li key={item}>{item}</li>)
+                : <li>Your resume is already covering the major ATS basics for this role.</li>}
             </ul>
           </article>
           <article>
             <h3>Missing Keywords</h3>
             <div className="public-ats-chips">
               {(result.missingKeywords || []).length
-                ? result.missingKeywords.map((k) => <span key={k}>{k}</span>)
-                : <span>Great coverage</span>}
+                ? result.missingKeywords.map((item) => <span key={item}>{item}</span>)
+                : <span>No major keyword gaps detected</span>}
             </div>
             <h3 className="public-ats-secondary-heading">Matched Keywords</h3>
             <div className="public-ats-chips public-ats-chips--matched">
               {(result.matchedKeywords || []).length
-                ? result.matchedKeywords.map((k) => <span key={k}>{k}</span>)
-                : <span>Not enough data</span>}
+                ? result.matchedKeywords.map((item) => <span key={item}>{item}</span>)
+                : <span>No strong role match yet</span>}
             </div>
             {(result.warnings || []).length ? (
               <>

@@ -63,7 +63,7 @@ const FooterAboutTemplate = ({ pageData, relatedLinks }) => {
           <PublicSectionHeader
             eyebrow="Why HHH Jobs"
             title="An operating model for better hiring, not just another job board"
-            description="The reference product uses modular public pages with strong section hierarchy. This page now follows the same structure while keeping HHH Jobs content intact."
+            description="HHH Jobs is built to make hiring more transparent, more responsive, and more useful for employers as well as professionals."
             centered
           />
 
@@ -103,9 +103,9 @@ const FooterAboutTemplate = ({ pageData, relatedLinks }) => {
         <div className="container mx-auto max-w-7xl">
           <PublicCallToAction
             eyebrow="Next Step"
-            title="Use the same structured experience across the rest of the platform"
-            description="From public discovery pages to role dashboards, HHH Jobs now follows the same modular section system for cleaner scaling."
-            chips={['Shared modules', 'Reusable sections', 'Industry-style structure']}
+            title="Explore the platform with a clearer view of how HHH Jobs works"
+            description="Move from company information into services, support, and employer journeys with a more consistent public experience."
+            chips={['Employer support', 'Career guidance', 'Trusted process']}
             actions={[
               { label: 'Create Account', to: '/sign-up' },
               { label: 'View Employer Home', to: '/employer-home' }

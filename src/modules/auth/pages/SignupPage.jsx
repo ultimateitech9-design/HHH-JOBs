@@ -357,9 +357,9 @@ const SignupPage = () => {
     <AuthPageShell
       eyebrow="Create Account"
       title="Register for HHH Jobs"
-      description=""
-      sideTitle="Public auth pages now follow a more modular industry-style structure"
-      sideDescription="The visual shell aligns with the reference app, while HHH Jobs-specific validation, ID generation, fallback OTP logic, and redirects stay intact."
+      description="Create the account that matches your hiring or career goals and start with a clear, guided registration flow."
+      sideTitle="Build your HHH Jobs account with confidence"
+      sideDescription="Choose the role that fits you, complete a straightforward setup, and begin applying, hiring, or exploring new opportunities."
       benefits={signupShellBenefits}
       balancedPanels
       lockBalancedHeight={false}
@@ -389,7 +389,7 @@ const SignupPage = () => {
             />
           ) : (
             <AuthFormMessage tone="info">
-              HR accounts use manual signup and manual login only.
+              Recruiter accounts are created through the manual form below.
             </AuthFormMessage>
           )}
 

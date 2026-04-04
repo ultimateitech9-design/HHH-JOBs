@@ -426,7 +426,7 @@ const CompaniesPage = () => {
                 }`}
               >
                 {isAuthenticated
-                  ? 'Company website links remain hidden, but job boards and internal company actions are available after login.'
+                  ? 'Company website links remain hidden, but job boards and role-specific company access become available after login.'
                   : 'Guests can browse the premium employer preview, but jobs and company actions unlock only after login.'}
               </p>
             </div>

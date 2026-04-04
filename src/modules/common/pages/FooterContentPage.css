@@ -326,6 +326,8 @@
 .contact-us-region-mail {
   font-size: 0.78rem;
   color: #f6f9ff;
+  text-transform: lowercase;
+  letter-spacing: 0;
 }
 
 .contact-us-regional-mails > a {

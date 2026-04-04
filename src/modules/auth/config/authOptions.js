@@ -1,12 +1,12 @@
 export const socialRoleOptions = [
-  { value: 'student', label: 'Student / Candidate', description: 'Candidate login for jobs and applications.' },
-  { value: 'retired_employee', label: 'Retired Employee', description: 'Opportunity flow for retired professionals.' }
+  { value: 'student', label: 'Student / Candidate', description: 'Apply for roles, track applications, and manage your profile.' },
+  { value: 'retired_employee', label: 'Retired Employee', description: 'Explore opportunities designed for experienced professionals.' }
 ];
 
 export const signupRoleOptions = [
-  { value: 'student', label: 'Student / Candidate', description: 'Candidate login for jobs and applications.' },
-  { value: 'hr', label: 'HR / Recruiter', description: 'Recruiter flows for jobs and hiring.' },
-  { value: 'retired_employee', label: 'Retired Employee', description: 'Opportunity flow for retired professionals.' }
+  { value: 'student', label: 'Student / Candidate', description: 'Apply for roles, track applications, and manage your profile.' },
+  { value: 'hr', label: 'HR / Recruiter', description: 'Manage openings, applicants, and hiring communication.' },
+  { value: 'retired_employee', label: 'Retired Employee', description: 'Explore opportunities designed for experienced professionals.' }
 ];
 
 export const genderOptions = [
@@ -46,63 +46,63 @@ export const countryCodeOptions = [
 
 export const loginShellBenefits = [
   {
-    title: 'Dashboard continuity',
-    description: 'Shared shells keep sign-in aligned with the rest of the product.'
+    title: 'Secure sign-in',
+    description: 'Access your HHH Jobs account through a clear and protected sign-in flow.'
   },
   {
-    title: 'Role-aware access',
-    description: 'Managed accounts and role redirects remain intact.'
+    title: 'Role-specific access',
+    description: 'Candidates, recruiters, and experienced professionals enter the experience built for them.'
   },
   {
-    title: 'Social login support',
-    description: 'Google and LinkedIn stay available only for student and retired accounts.'
+    title: 'Flexible login options',
+    description: 'Eligible accounts can continue with Google or LinkedIn, or sign in with email anytime.'
   }
 ];
 
 export const signupShellBenefits = [
   {
-    title: 'Role-based onboarding',
-    description: 'Candidate, recruiter, and retired-employee registrations each expose only the fields they need.'
+    title: 'Role-fit account setup',
+    description: 'Each registration path is designed around the information most relevant to that account type.'
   },
   {
-    title: 'Identity previews',
-    description: 'Generated IDs remain visible during signup so users understand the account structure.'
+    title: 'Clear profile creation',
+    description: 'The signup flow keeps account creation straightforward, professional, and easy to complete.'
   },
   {
-    title: 'Fallback ready',
-    description: 'HR keeps manual onboarding while student and retired flows can still use social auth.'
+    title: 'Smooth verification',
+    description: 'Users can complete registration with the right sign-up and verification path for their role.'
   }
 ];
 
 export const forgotPasswordBenefits = [
   {
-    title: 'Secure reset flow',
-    description: 'Password recovery stays split into OTP request and reset confirmation for a cleaner path.'
+    title: 'Protected recovery',
+    description: 'Password reset follows a secure path that helps protect account access.'
   },
   {
-    title: 'Minimal friction',
-    description: 'The page surfaces only the current step while preserving existing API behavior.'
+    title: 'Step-by-step guidance',
+    description: 'Each stage is presented clearly so users can complete recovery without confusion.'
   }
 ];
 
 export const otpBenefits = [
   {
-    title: 'Single-purpose verification',
-    description: 'OTP entry now sits inside the same auth shell as the rest of the public onboarding stack.'
+    title: 'Verified access',
+    description: 'OTP confirmation helps ensure the right user is completing the next account step.'
   },
   {
-    title: 'Fallback compatible',
-    description: 'Manual resend and local fallback verification continue to behave as before.'
+    title: 'Quick confirmation',
+    description: 'The process stays focused so users can complete verification with minimal delay.'
   }
 ];
 
 export const oauthBenefits = [
   {
-    title: 'Callback handoff',
-    description: 'Social login responses are processed and redirected into the correct dashboard flow.'
+    title: 'Secure handoff',
+    description: 'Social sign-in responses are processed safely before users continue into the platform.'
   },
   {
-    title: 'Session continuity',
-    description: 'Generated IDs and role-based session data remain normalized before navigation.'
+    title: 'Account continuity',
+    description: 'Role-based account access stays organised and ready for the next step after sign-in.'
   }
 ];

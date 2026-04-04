@@ -54,6 +54,47 @@
   font-size: 0.8rem;
 }
 
+.public-ats-criteria {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.public-ats-field {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.public-ats-field--full {
+  grid-column: 1 / -1;
+}
+
+.public-ats-field span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #18466f;
+}
+
+.public-ats-field input,
+.public-ats-field textarea {
+  width: 100%;
+  border: 1px solid #cfe0f3;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.86);
+  padding: 0.75rem 0.85rem;
+  color: #12385e;
+  font: inherit;
+  resize: vertical;
+}
+
+.public-ats-field input:focus,
+.public-ats-field textarea:focus {
+  outline: 0;
+  border-color: #8eb6df;
+  box-shadow: 0 0 0 3px rgba(68, 132, 198, 0.12);
+}
+
 .public-ats-upload {
   display: grid;
   gap: 0.7rem;
@@ -262,6 +303,10 @@
 
 @media (max-width: 860px) {
   .public-ats-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .public-ats-criteria {
     grid-template-columns: 1fr;
   }
 

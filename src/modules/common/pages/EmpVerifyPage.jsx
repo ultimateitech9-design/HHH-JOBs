@@ -7,31 +7,31 @@ import PublicSectionHeader from '../components/publicPages/PublicSectionHeader';
 const highlights = [
   {
     title: 'Automated Verification Flow',
-    description: 'Employee and employer checks run through a structured digital workflow for faster decisions.',
+    description: 'Employer and candidate checks move through a structured digital workflow that supports faster review cycles.',
     icon: FiCheckCircle
   },
   {
     title: 'Fast Turnaround',
-    description: 'Verification responses are designed to reduce waiting time in active hiring cycles.',
+    description: 'Verification responses are designed to reduce waiting time when hiring decisions need to move quickly.',
     icon: FiClock
   },
   {
     title: 'Security-First Handling',
-    description: 'Sensitive verification data is framed around secure processing and trust-led operations.',
+    description: 'Sensitive verification data is handled with a strong emphasis on secure processing and responsible access.',
     icon: FiLock
   },
   {
     title: 'Multi-Industry Reach',
-    description: 'The platform supports use cases across technology, finance, healthcare, logistics, and more.',
+    description: 'The verification model supports hiring requirements across technology, finance, healthcare, logistics, and more.',
     icon: FiGlobe
   }
 ];
 
 const processSteps = [
-  'Create organization account and submit candidate details.',
-  'Run automated background checks and document validation.',
-  'Review generated verification reports and flags.',
-  'Proceed with hiring decisions using verified records.'
+  'Create an organization account and submit the relevant candidate details.',
+  'Run background checks and document validation through the verification flow.',
+  'Review the generated report, flags, and supporting trust signals.',
+  'Use verified records to support more confident hiring decisions.'
 ];
 
 const industries = [
@@ -51,14 +51,14 @@ const EmpVerifyPage = () => {
   return (
     <div className="pb-16 md:pb-24">
       <PublicPageHero
-        eyebrow="Emp Verify"
-        title={<>Employee Verification With <span className="gradient-text">Eimager</span></>}
-        description="Understand the Eimager verification flow quickly, compare the core trust signals, and move from employer due diligence to hiring decisions with less friction."
-        chips={['Verification-first', 'Employer ready', 'Multi-industry support']}
+        eyebrow="Employee Verification"
+        title={<>Employee Verification Powered by <span className="gradient-text">Eimager</span></>}
+        description="Understand how the Eimager verification workflow supports employer due diligence, reduces uncertainty, and adds stronger trust signals to hiring decisions."
+        chips={['Verification support', 'Employer ready', 'Multi-industry use']}
         metrics={[
-          { label: 'Focus', value: 'Background Checks', helper: 'Employer-led employee verification' },
-          { label: 'Promise', value: 'Fast Reviews', helper: 'Built for lower hiring delays' },
-          { label: 'Coverage', value: '10+ Sectors', helper: 'Across modern hiring categories' }
+          { label: 'Focus', value: 'Background Checks', helper: 'Verification support for employer-led review' },
+          { label: 'Response', value: 'Faster Reviews', helper: 'Built to reduce avoidable hiring delays' },
+          { label: 'Coverage', value: '10+ Sectors', helper: 'Relevant across multiple hiring environments' }
         ]}
         aside={
           <div className="rounded-[2rem] border border-slate-200 bg-white/92 p-6 shadow-xl backdrop-blur-sm">
@@ -95,8 +95,8 @@ const EmpVerifyPage = () => {
         <PublicSectionHeader
           centered
           eyebrow="Verification Signals"
-          title="What employers evaluate before they trust the process"
-          description="These are the core points surfaced from the Eimager experience and why Emp Verify matters inside a serious hiring workflow."
+          title="What employers look for before they trust the process"
+          description="These are the core verification strengths that make the service relevant inside a serious hiring workflow."
         />
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -118,7 +118,7 @@ const EmpVerifyPage = () => {
             <PublicSectionHeader
               eyebrow="Process"
               title="How the verification flow works"
-              description="A simple four-step workflow gives employers a clearer route from data submission to verified decision-making."
+              description="A straightforward four-step process helps employers move from data submission to verification-backed decisions with less friction."
             />
 
             <div className="mt-8 grid gap-4">
@@ -142,7 +142,7 @@ const EmpVerifyPage = () => {
             <PublicSectionHeader
               eyebrow="Industry Fit"
               title="Sectors where verification support matters most"
-              description="Emp Verify messaging is positioned for operational hiring needs across regulated and volume-driven industries."
+              description="Verification support is especially valuable in regulated, trust-sensitive, and high-volume hiring environments."
             />
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -164,7 +164,7 @@ const EmpVerifyPage = () => {
                 <div>
                   <p className="font-heading text-lg font-bold text-navy">Why it fits HHH Jobs</p>
                   <p className="mt-1 text-sm leading-6 text-slate-600">
-                    Verification adds credibility to employer workflows and supports more trustworthy hiring conversations across the platform.
+                    Verification strengthens employer credibility, supports responsible screening, and improves trust across the hiring journey.
                   </p>
                 </div>
               </div>
@@ -177,7 +177,7 @@ const EmpVerifyPage = () => {
         <PublicCallToAction
           eyebrow="Next Step"
           title="Need verification support inside your hiring flow?"
-          description="Connect your employer workflow with clear trust signals, better candidate screening, and faster verification-led decisions."
+          description="Connect your hiring workflow with stronger trust signals, better candidate screening, and verification support that helps decisions move forward with confidence."
           actions={[
             { label: 'Contact HHH Jobs', to: '/contact-us' },
             { label: 'Open Employer Home', to: '/employer-home' }

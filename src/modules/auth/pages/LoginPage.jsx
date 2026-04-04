@@ -319,9 +319,9 @@ const LoginPage = () => {
     <AuthPageShell
       eyebrow="Secure Access"
       title={portalLabel}
-      description="Sign in to continue into the HHH Jobs dashboard experience."
-      sideTitle="Reference-style auth shell"
-      sideDescription="Role redirects and managed access stay intact, while social sign-in stays limited to student and retired accounts."
+      description="Sign in to manage applications, hiring activity, and account updates with confidence."
+      sideTitle="Welcome back to your HHH Jobs account"
+      sideDescription="Use a secure sign-in path to continue into the account experience that matches your role and goals."
       benefits={loginShellBenefits}
       balancedPanels
       panelClassName="w-full"
@@ -356,8 +356,8 @@ const LoginPage = () => {
         {demoFallbacksEnabled ? (
           <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-4">
             <div className="mb-3">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Quick Demo Access</p>
-              <p className="mt-1 text-sm text-slate-600">Use instant demo accounts for every internal dashboard and role-based smoke flow.</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Quick Access Preview</p>
+              <p className="mt-1 text-sm text-slate-600">Choose a role-based preview account to explore the platform experience instantly.</p>
             </div>
             <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
               {DEMO_ACCESS_ACCOUNTS.map((account) => (

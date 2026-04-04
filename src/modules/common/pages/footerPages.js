@@ -48,86 +48,86 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'HHH Job Blog',
     eyebrow: 'Insights',
     summary:
-      'Read practical insights on job search strategy, ATS optimization, interview preparation, and hiring trends.',
+      'Practical guidance for candidates, recruiters, and employers who want stronger hiring outcomes, clearer communication, and better preparation.',
     sections: [
       {
-        heading: 'ATS-Friendly Resume Blueprint (2026)',
+        heading: 'Build a Resume That Clears ATS and Impresses Recruiters',
         tag: 'Resume',
         readTime: '6 min read',
         image: '/images/blog/ats-resume-cover.svg',
         imageAlt: 'Resume and ATS optimization visual',
         to: '/blog/ats-friendly-resume-blueprint-2026',
         body:
-          'Most candidates lose shortlisting because resumes are keyword-heavy but context-light. A strong ATS resume must combine role keywords, measurable outcomes, and clean section hierarchy.',
+          'A strong resume does more than match keywords. It presents role-fit, evidence, and readability in a format that works for both screening systems and human reviewers.',
         items: [
-          'Use a single-column layout with clear headings: Summary, Skills, Experience, Projects, Education',
-          'Mirror job description keywords naturally inside project and impact lines',
-          'Prefer quantified bullets: "Improved API latency by 32%" over generic task descriptions',
-          'Keep file naming clean: full-name-role-resume.pdf'
+          'Use a clean structure with summary, skills, experience, projects, and education',
+          'Place role-relevant keywords inside evidence-based bullets',
+          'Show measurable outcomes wherever possible',
+          'Submit a polished PDF with a professional file name'
         ]
       },
       {
-        heading: 'Projects That Recruiters Actually Notice',
+        heading: 'Projects That Prove Capability, Not Just Curiosity',
         tag: 'Projects',
         readTime: '5 min read',
         image: '/images/blog/projects-cover.svg',
         imageAlt: 'Project showcase and portfolio visual',
         to: '/blog/projects-that-recruiters-notice',
         body:
-          'Projects are your proof of execution. Recruiters evaluate clarity of problem statement, ownership, and measurable outcomes far more than fancy tech stack names.',
+          'A strong project tells a complete story: the problem, your role, the decisions you made, and the result that followed.',
         items: [
-          'Start with one-line problem statement and target users',
-          'Add architecture snapshot: frontend, backend, database, deployment',
-          'Highlight your personal contribution and decisions',
-          'Close with results: users served, performance gains, or business impact'
+          'Explain the problem before the tech stack',
+          'Show your exact contribution and ownership',
+          'Describe important architectural or product choices',
+          'Close with adoption, efficiency, or business impact'
         ]
       },
       {
-        heading: 'Interview Preparation in 14 Days',
+        heading: 'A 14-Day Interview Reset for Serious Candidates',
         tag: 'Interviews',
         readTime: '7 min read',
         image: '/images/blog/interview-cover.svg',
         imageAlt: 'Interview planning board visual',
         to: '/blog/interview-preparation-in-14-days',
         body:
-          'Consistency beats random practice. A focused two-week plan helps candidates improve communication, technical depth, and confidence under pressure.',
+          'Two focused weeks can dramatically improve interview performance when preparation is structured around clarity, recall, and confidence under pressure.',
         items: [
-          'Days 1-4: core fundamentals and role-specific question bank',
-          'Days 5-8: project deep-dive narration and mock HR rounds',
-          'Days 9-12: timed coding/case simulations',
-          'Days 13-14: final mock interviews with feedback tracking'
+          'Rebuild fundamentals before revisiting advanced topics',
+          'Practice project storytelling until it sounds natural',
+          'Use timed mock sessions to reduce pressure-driven mistakes',
+          'Track weak areas daily and improve them before the final round'
         ]
       },
       {
-        heading: 'Blog 4: What HR Teams Expect from Freshers in 2026',
+        heading: 'What Hiring Teams Expect from Freshers in 2026',
         tag: 'Hiring',
         readTime: '4 min read',
         image: '/images/blog/hr-expectations-cover.svg',
         imageAlt: 'Hiring checklist and recruiter workflow visual',
         to: '/blog/hr-expectations-from-freshers-2026',
         body:
-          'Hiring teams now prioritize reliability, communication, and learning velocity. Domain fit and ownership mindset often outweigh perfect academic scores.',
+          'Freshers are increasingly assessed on communication, learning agility, reliability, and the ability to turn academic learning into practical action.',
         items: [
-          'Strong communication in interviews and follow-up mails',
-          'Evidence of self-learning through projects/certifications',
-          'Basic understanding of collaboration tools and workflows',
-          'Professional behavior: punctuality, clarity, and accountability'
+          'Show professional communication in interviews and follow-ups',
+          'Bring proof of learning through projects or internships',
+          'Demonstrate ownership, not just participation',
+          'Stay punctual, clear, and respectful throughout the process'
         ]
       },
       {
-        heading: 'Blog 5: Common Application Mistakes and How to Avoid Them',
+        heading: 'Application Mistakes That Quietly Cost Candidates Interviews',
         tag: 'Applications',
         readTime: '5 min read',
         image: '/images/blog/application-mistakes-cover.svg',
         imageAlt: 'Job application quality and review visual',
         to: '/blog/common-application-mistakes',
         body:
-          'Candidates often miss opportunities due to avoidable process errors. Small fixes in profile quality and application hygiene can significantly improve response rate.',
+          'Many applications fail long before interviews begin because the profile is incomplete, the resume is generic, or the follow-up is weak.',
         items: [
-          'Applying with incomplete profile or outdated resume',
-          'Using one generic resume for every role',
-          'Ignoring application status and interview updates',
-          'Skipping post-interview thank-you and feedback communication'
+          'Apply with a current profile and updated resume',
+          'Tailor the top section of the resume to the role',
+          'Track applications so follow-ups stay timely',
+          'Maintain communication after every important hiring step'
         ]
       }
     ]
@@ -136,34 +136,34 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'ATS-Friendly Resume Blueprint (2026)',
     eyebrow: 'Resume',
     summary:
-      'A complete framework to improve ATS match quality without making your resume look robotic.',
+      'A practical framework for writing a resume that performs well in ATS screening while still sounding credible and human.',
     sections: [
       {
-        heading: 'Why ATS rejects resumes',
+        heading: 'Start with role clarity before you write',
         image: '/images/blog/ats-resume-cover.svg',
         imageAlt: 'ATS optimization cover',
         body:
-          'Most ATS engines prioritize structured text, role keywords, and contextual relevance. Resumes fail when important terms are missing or buried inside noisy formatting.',
+          'Most resumes underperform because they are written for every role at once. Decide the target role first, then align the language, evidence, and order of information around that goal.',
         items: [
-          'Use clear section headers and consistent chronology',
-          'Avoid text in images/tables for critical details',
-          'Keep role title and skills aligned with target jobs'
+          'Match the headline, summary, and skills to one clear job family',
+          'Keep chronology and section order easy to scan',
+          'Remove content that is unrelated to the role you are pursuing'
         ]
       },
       {
-        heading: 'High-impact bullet formula',
+        heading: 'Write bullets that carry proof',
         body:
-          'Write each bullet as Action + Scope + Impact. This format improves both ATS keyword density and recruiter readability.',
+          'Recruiters and screening systems both respond well to specific, evidence-led bullets. Strong writing shows what you did, where you did it, and what changed because of your work.',
         items: [
-          'Built candidate portal modules in React + Node.js',
-          'Reduced page load time by 34% via code splitting and caching',
-          'Improved form completion by 22% using validation and UX changes'
+          'Use the pattern Action + Context + Outcome',
+          'Include numbers, scale, quality gains, or time savings when available',
+          'Prefer direct language over vague phrases such as responsible for'
         ]
       },
       {
-        heading: 'Final pre-apply checklist',
+        heading: 'Protect readability before every submission',
         body:
-          'Before every application, adjust summary and skills order, then ensure top 40% of resume reflects role-fit keywords naturally.'
+          'Before sending the final resume, check formatting, file quality, and keyword placement. A well-structured first half of the document often determines whether the rest is read carefully.'
       }
     ]
   },
@@ -171,34 +171,34 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'How to Build Projects That Recruiters Notice',
     eyebrow: 'Projects',
     summary:
-      'Turn side projects into strong hiring proof with outcome-driven storytelling and clear ownership.',
+      'Turn project work into credible hiring proof through sharp positioning, visible ownership, and measurable results.',
     sections: [
       {
-        heading: 'What recruiters scan first',
+        heading: 'Lead with the problem, not the stack',
         image: '/images/blog/projects-cover.svg',
         imageAlt: 'Project hiring proof visual',
         body:
-          'Recruiters first check if your project solves a real problem, whether you led meaningful decisions, and if outcomes are measurable.',
+          'A recruiter usually decides within seconds whether a project is memorable. The strongest projects explain why they were built before they explain how they were built.',
         items: [
-          'Problem statement clarity',
-          'Your exact contribution',
-          'Measurable result or learning depth'
+          'Clarify the audience or business need',
+          'Explain the challenge your solution addressed',
+          'Show why the result matters in real terms'
         ]
       },
       {
-        heading: 'Project section structure',
+        heading: 'Show real ownership',
         body:
-          'Keep each project compact: objective, tech stack, your role, and results. Avoid long tool lists without context.',
+          'Ownership is what separates a serious project from a decorative one. Employers want to know the decisions you drove, the trade-offs you handled, and the problems you solved yourself.',
         items: [
-          '2 lines: objective + user context',
-          '2 lines: architecture + tools',
-          '3 bullets: impact and improvements'
+          'State your role clearly if the project was collaborative',
+          'Mention architectural or product choices you made',
+          'Describe the improvements you introduced over time'
         ]
       },
       {
-        heading: 'Portfolio quality signal',
+        heading: 'Package the project professionally',
         body:
-          'A polished README, live demo link, and short architecture note often outperform raw number of projects.'
+          'A polished README, clear screenshots, meaningful metrics, and a stable live link often create more trust than adding several weak projects to a portfolio.'
       }
     ]
   },
@@ -206,34 +206,34 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Interview Preparation in 14 Days',
     eyebrow: 'Interviews',
     summary:
-      'A practical two-week system to improve technical rounds, HR communication, and confidence.',
+      'A disciplined two-week preparation plan to improve technical answers, project discussions, and interview confidence.',
     sections: [
       {
-        heading: 'Week 1: Build depth',
+        heading: 'Week 1: Rebuild clarity and depth',
         image: '/images/blog/interview-cover.svg',
         imageAlt: 'Interview plan board',
         body:
-          'Focus on fundamentals, role-specific patterns, and project walkthrough practice. Record mock answers to find clarity gaps.',
+          'The first week should strengthen fundamentals, sharpen role relevance, and improve how you explain your own work. Clarity matters more than volume.',
         items: [
-          'Daily 90-minute focused prep block',
-          'Role-specific question tracker',
-          'Project story in 2-minute and 6-minute versions'
+          'Revise the concepts most likely to appear in your target role',
+          'Prepare short and long versions of your project stories',
+          'Record practice answers and correct unclear explanations'
         ]
       },
       {
-        heading: 'Week 2: Simulate pressure',
+        heading: 'Week 2: Train for decision pressure',
         body:
-          'Run timed mock interviews and reflection loops. Prioritize accuracy, structure, and communication over speed.',
+          'The second week should simulate real interview conditions. Timed practice improves composure, sequencing, and the ability to think clearly while being observed.',
         items: [
-          '2 coding/case rounds under timer',
-          '2 HR + behavioral rounds',
-          'Debrief sheet after every mock'
+          'Run technical, HR, and behavioural mock rounds under time limits',
+          'Review each session immediately after it ends',
+          'Repeat difficult topics until your explanation becomes natural'
         ]
       },
       {
-        heading: 'Interview-day protocol',
+        heading: 'Interview day should feel familiar',
         body:
-          'Keep a one-page quick sheet: achievements, project metrics, role-fit reasons, and questions for interviewer.'
+          'Carry a one-page preparation sheet with achievements, project metrics, strengths, and thoughtful questions. Good preparation makes the final conversation feel controlled rather than uncertain.'
       }
     ]
   },
@@ -241,34 +241,34 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'What HR Teams Expect from Freshers in 2026',
     eyebrow: 'Hiring',
     summary:
-      'Understand what hiring teams look for beyond marks and certifications.',
+      'Understand what hiring teams now value beyond marks, certificates, and generic enthusiasm.',
     sections: [
       {
-        heading: 'Top evaluation signals',
+        heading: 'Freshers are judged on readiness, not only potential',
         image: '/images/blog/hr-expectations-cover.svg',
         imageAlt: 'Recruiter expectation visual',
         body:
-          'Freshers are evaluated on communication quality, reliability, and problem-solving discipline. These signals predict onboarding success.',
+          'Hiring teams want signs that a fresher can learn quickly, communicate well, and behave professionally from the first week onward.',
         items: [
-          'Clear and concise communication',
-          'Ownership mindset in projects',
-          'Consistency in follow-ups and process discipline'
+          'Clear communication in conversation and writing',
+          'Evidence of ownership in projects or internships',
+          'Consistency in preparation, punctuality, and follow-up'
         ]
       },
       {
-        heading: 'Common rejection triggers',
+        heading: 'What weakens an otherwise good profile',
         body:
-          'Generic resumes, weak project clarity, and poor interview structure are still the most common reasons for rejection.',
+          'A fresher can lose momentum quickly when the profile looks generic, the project work is not explained well, or the interview answers sound unstructured.',
         items: [
-          'No quantifiable impact in resume bullets',
-          'Unclear role preference',
-          'Inconsistent answers about project ownership'
+          'No clear role preference or career direction',
+          'Weak evidence of practical work beyond academics',
+          'Inconsistent answers about contribution and learning'
         ]
       },
       {
-        heading: 'How to stand out',
+        heading: 'How freshers stand out today',
         body:
-          'Show evidence of learning velocity: recent projects, feedback incorporation, and focused role preparation.'
+          'Freshers stand out by showing focused preparation, practical curiosity, and the ability to learn from feedback quickly. Employers remember candidates who sound prepared, grounded, and genuinely employable.'
       }
     ]
   },
@@ -276,88 +276,73 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Common Application Mistakes and How to Avoid Them',
     eyebrow: 'Applications',
     summary:
-      'Fix the most frequent errors that reduce shortlist rates and response quality.',
+      'Correct the avoidable mistakes that reduce shortlist rates, weaken credibility, and slow down responses.',
     sections: [
       {
-        heading: 'Application hygiene basics',
+        heading: 'Application quality begins before you click apply',
         image: '/images/blog/application-mistakes-cover.svg',
         imageAlt: 'Application quality checks visual',
         body:
-          'Poorly filled profiles and one-size-fits-all resumes weaken application quality before interviews even begin.',
+          'Candidates often focus on volume instead of quality. Incomplete profiles, vague resumes, and inconsistent contact details undermine strong opportunities before they even reach review.',
         items: [
-          'Keep profile data complete and updated',
-          'Tailor summary and key skills per role',
-          'Track applied roles and status weekly'
+          'Keep profile information current and accurate',
+          'Tailor the opening section of the resume to the role',
+          'Review every submission before sending it'
         ]
       },
       {
-        heading: 'Communication mistakes',
+        heading: 'Poor communication creates silent rejection',
         body:
-          'Late replies, vague email responses, and no follow-up after interviews hurt professional perception.',
+          'Many good candidates lose trust because replies are late, messages are vague, or follow-up never happens after an interview or screening call.',
         items: [
-          'Respond within 24 hours to recruiter updates',
-          'Use concise and professional follow-up',
-          'Send thank-you note after interview'
+          'Reply promptly and professionally to recruiter messages',
+          'Use concise, respectful follow-ups that add context',
+          'Close important conversations with clarity and courtesy'
         ]
       },
       {
-        heading: 'Fix in one week',
+        heading: 'A one-week reset can change response quality',
         body:
-          'Audit all active applications, improve top 3 resumes, and run ATS checks with targeted job descriptions for better relevance.'
+          'Audit active applications, refine your best resume versions, and improve the quality of every new submission. Consistent application hygiene often produces stronger outcomes than sending more applications.'
       }
     ]
   },
   'about-us': {
-    title: 'About HHH Job',
+    title: 'About HHH Jobs',
     eyebrow: 'Company',
     summary:
-      'Welcome to HHH Jobs, a professional hiring platform designed for clarity, speed, and trust.',
+      'HHH Jobs exists to make hiring more credible, more responsive, and more useful for both employers and professionals.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: 'What HHH Jobs stands for',
         body:
-          'We connect employers and job seekers through a streamlined, transparent, and efficient recruitment experience that removes confusion often associated with traditional hiring.'
+          'HHH Jobs is built around a simple idea: people make better hiring decisions when information is clear, communication is timely, and the process feels dependable from the first click to the final decision.'
       },
       {
-        heading: 'Who We Are',
+        heading: 'Why the platform was built',
         body:
-          'HHH Jobs was created to simplify the hiring process while maintaining professionalism and reliability. We understand employer challenges in finding the right talent and job seeker frustrations around unclear updates, so we bridge this gap with a solution built on trust and efficiency.'
+          'The platform was created to reduce the friction that slows modern recruitment. Employers need a cleaner path to qualified talent, and candidates deserve a process that feels organised, respectful, and worth their effort.'
       },
       {
-        heading: 'What We Do',
+        heading: 'What users should expect',
         body:
-          'HHH Jobs serves as a reliable connection point between companies and qualified professionals across industries. Our platform is designed to:',
+          'Every part of the experience is designed to support serious hiring and serious career movement:',
         items: [
-          'Provide clear and structured job listings',
-          'Ensure faster application and response cycles',
-          'Maintain professional communication standards',
-          'Promote transparency in hiring'
+          'Well-structured job information that helps users decide quickly',
+          'Clearer interactions between employers and applicants',
+          'Public support and policy pages that explain how the platform works',
+          'A stronger emphasis on trust, safety, and professional conduct'
         ]
       },
       {
-        heading: 'Our Approach',
+        heading: 'How quality is measured',
         body:
-          'We prioritize simplicity without compromising quality. Every feature is built to reduce delays, remove unnecessary steps, and make hiring straightforward.'
+          'We value accuracy, relevance, usability, and response quality. The goal is not to create noise, but to support decisions that are better informed and easier to act on.'
       },
       {
-        heading: 'Our Mission',
+        heading: 'Our mission',
         body:
-          'Our mission is to create a hiring ecosystem where opportunities and talent meet seamlessly. We empower businesses to grow with the right workforce and help individuals advance their careers with confidence.'
-      },
-      {
-        heading: 'Why Choose HHH Jobs?',
-        body:
-          'Our platform is built on three pillars:',
-        items: [
-          'Clarity - Clear job requirements, transparent communication, and structured processes.',
-          'Speed - Efficient application management and faster employer-candidate connections.',
-          'Trust - A professional environment built on credibility and accountability.'
-        ]
-      },
-      {
-        heading: 'Closing Note',
-        body:
-          'Whether you are an employer searching for dependable talent or a professional seeking the right opportunity, HHH Jobs makes the process smooth and effective. At HHH Jobs, hiring is not just about filling positions, it is about building meaningful professional connections.'
+          'Our mission is to build a hiring ecosystem where opportunity, credibility, and communication move together. We want employers to hire with more confidence and professionals to navigate opportunity with greater clarity.'
       }
     ]
   },
@@ -365,27 +350,27 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Contact Us',
     eyebrow: 'Support',
     summary:
-      'Connect with the right HHH Jobs team for support, business conversations, or employer guidance.',
+      'Reach the right HHH Jobs team for support, partnerships, hiring assistance, or general enquiries.',
     sections: [
       {
         heading: 'Support Requests',
         body:
-          'Use the support route for account access issues, product bugs, application problems, or urgent platform guidance.'
+          'Use the support route for account access issues, application problems, platform errors, or any urgent help related to using HHH Jobs.'
       },
       {
         heading: 'Business & Partnerships',
         body:
-          'Employer onboarding, commercial plans, and regional partnership conversations are handled through the business contact paths.'
+          'Regional employer onboarding, partnership discussions, and commercial conversations are handled through our business contact paths.'
       },
       {
         heading: 'General Information',
         body:
-          'For product information, company questions, or non-urgent communication, the general contact path keeps routing simple.'
+          'Use the general contact path for platform questions, company information, or non-urgent communication that does not require support intervention.'
       },
       {
         heading: 'Careers & HR',
         body:
-          'If your message is related to joining the HHH Jobs team, the HR route keeps internal hiring communication separate from platform support.'
+          'If your message is related to careers with HHH Jobs, use the HR route so your enquiry reaches the appropriate team without delay.'
       }
     ]
   },
@@ -393,44 +378,44 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Careers at HHH Jobs',
     eyebrow: 'Careers',
     summary:
-      'At HHH Jobs, we are shaping the future of recruitment with clarity, speed, and trust.',
+      'Join a team committed to building a more credible, more responsive, and more human hiring experience.',
     sections: [
       {
-        heading: 'Careers at HHH Jobs',
+        heading: 'Work that has visible impact',
         body:
-          'We are not just building a hiring platform, we are building a better hiring experience. To do that, we are looking for passionate, innovative, and dedicated people who want to make a real difference in the world of work.'
+          'At HHH Jobs, every role contributes to how employers discover talent and how professionals experience opportunity. We care about work that improves outcomes, not activity that only fills time.'
       },
       {
-        heading: 'Why Work With Us?',
+        heading: 'Why work with us',
         body:
-          'Working at HHH Jobs means being part of a team that values creativity, collaboration, and continuous growth. Great ideas come from diverse perspectives, and every team member contributes to our success.',
+          'We value thoughtful execution, mutual respect, and meaningful contribution. Strong teams are built through high standards, honest collaboration, and room to grow.',
         items: [
-          'Purpose-Driven Culture - Every role contributes to improving how employers and job seekers connect.',
-          'Growth & Learning Opportunities - Build skills, grow professionally, and take on new challenges.',
-          'Collaboration & Respect - Work in a culture of teamwork, open communication, and mutual respect.',
-          'Innovation & Impact - Bring forward ideas that directly improve our platform and hiring outcomes.'
+          'Purpose-led work connected to real hiring and career outcomes',
+          'Opportunities to grow through responsibility and cross-functional learning',
+          'A culture that values clear communication and accountability',
+          'The chance to improve a product people use for decisions that matter'
         ]
       },
       {
-        heading: 'Who We Are Looking For',
+        heading: 'Who thrives here',
         body:
-          'We welcome talented people across technology, customer success, marketing, operations, and design who are excited to make an impact.',
+          'We look for professionals who combine competence with judgement. Curiosity matters, but so do discipline, professionalism, and care for the end user.',
         items: [
-          'Problem solvers who enjoy tackling new challenges',
-          'Team players who thrive in collaborative environments',
-          'Innovators who push boundaries with fresh ideas',
-          'Professionals who embrace quality and integrity'
+          'Problem-solvers who can simplify complex situations',
+          'Professionals who communicate clearly and act responsibly',
+          'People who can improve systems, not just operate inside them',
+          'Team members who respect quality, trust, and consistency'
         ]
       },
       {
-        heading: 'Join Our Team',
+        heading: 'Career growth at HHH Jobs',
         body:
-          'At HHH Jobs, careers should be fulfilling, dynamic, and rewarding. If you are ready to grow with a company transforming recruitment, explore available opportunities and take the next step in your career.'
+          'A strong career here comes from doing work well, learning quickly, and improving how the platform serves its users. We value people who raise the standard over time.'
       },
       {
-        heading: 'Ready to Make an Impact?',
+        heading: 'How to explore opportunities',
         body:
-          'Visit our Careers section to view open roles and apply today. HHH Jobs - where talent meets opportunity.'
+          'If our mission and way of working resonate with you, explore current openings and apply for the role where your capability can create the strongest contribution.'
       }
     ]
   },
@@ -438,60 +423,43 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Employer Home',
     eyebrow: 'For Employers',
     summary:
-      'Welcome to HHH Jobs, your trusted partner for professional and efficient hiring.',
+      'A clearer, more dependable hiring environment for employers who value quality, speed, and accountability.',
     sections: [
       {
-        heading: 'Hire Smarter with HHH Jobs',
+        heading: 'Hire with more confidence',
         body:
-          'Our Employer Home is designed to help businesses of all sizes find the right talent quickly and with confidence, without the confusion and delays often associated with traditional recruitment.'
+          'HHH Jobs helps employers present roles more clearly, review talent more efficiently, and maintain a more credible hiring experience from posting to final interaction.'
       },
       {
-        heading: 'Who We Support',
+        heading: 'Who we support',
         body:
-          'Whether you are a startup building your first team or an established company scaling for growth, HHH Jobs provides the tools, clarity, and support you need to hire better.'
+          'Whether you are building your first team, expanding a specialist function, or strengthening a mature operation, the platform is designed to support structured and professional hiring.'
       },
       {
-        heading: 'What We Offer Employers',
+        heading: 'What employers gain',
         body:
-          'At HHH Jobs, we understand that business success starts with the right people. Our streamlined hiring platform empowers employers with:',
+          'The employer experience is built around decision quality and operational ease:',
         items: [
-          'Clear Job Posting Tools - Create and publish structured listings that highlight key skills, responsibilities, and expectations.',
-          'Faster Candidate Connections - Communicate seamlessly with applicants and engage qualified professionals quickly.',
-          'Smart Candidate Filtering - Shortlist candidates by skills, experience, and relevance.',
-          'Professional Interaction - Use messaging and application tracking features designed for clarity and transparency.'
+          'Structured job pages that communicate role expectations clearly',
+          'Faster access to relevant applicants and hiring conversations',
+          'A more organised way to review fit, skills, and readiness',
+          'Supportive public and policy pages that strengthen employer trust'
         ]
       },
       {
-        heading: 'Why Employers Choose HHH Jobs',
+        heading: 'Why employers choose HHH Jobs',
         body:
-          'HHH Jobs is built on three core principles:',
+          'Employers choose HHH Jobs when they want hiring that feels cleaner and more credible:',
         items: [
-          'Clarity - Present opportunities in a clean, structured format so candidates understand exactly what you are looking for.',
-          'Speed - Connect with talent faster and reduce time-to-hire with efficient communication and workflow tools.',
-          'Trust - Build confidence with candidates through a transparent and professional hiring process.'
+          'Clarity in job information and candidate communication',
+          'Speed without sacrificing professionalism or process quality',
+          'Trust built through stronger standards and visible support'
         ]
       },
       {
-        heading: 'Our Focus',
+        heading: 'The real objective',
         body:
-          'Our focus is not just to help you find applicants, but to help you find the right applicants.'
-      },
-      {
-        heading: 'A Hiring Platform That Works for You',
-        body:
-          'With HHH Jobs, recruitment becomes easier and more effective. Our employer-focused features help you:',
-        items: [
-          'Reach a wide pool of qualified candidates',
-          'Manage applications with ease',
-          'Communicate directly with prospects',
-          'Make informed hiring decisions',
-          'Strengthen your workforce'
-        ]
-      },
-      {
-        heading: 'Scale with Confidence',
-        body:
-          'Whether you are hiring for one role or many, HHH Jobs equips you with everything needed to build a strong team and grow your business.'
+          'The goal is not only to generate applications. The goal is to help employers reach better-fit people and move hiring decisions forward with less friction and more confidence.'
       }
     ]
   },
@@ -499,23 +467,32 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Sitemap',
     eyebrow: 'Navigation',
     summary:
-      'Use this page to quickly navigate all major product areas and policy sections.',
+      'A practical guide to the main public pages, hiring destinations, candidate journeys, and policy resources across HHH Jobs.',
     sections: [
       {
-        heading: 'Public pages',
+        heading: 'Core public pages',
         body:
-          'Home, authentication pages, and all support/policy pages are publicly accessible.'
+          'The public experience includes homepage discovery, account access, company information, support pages, legal pages, and editorial resources.'
       },
       {
-        heading: 'Role dashboards',
+        heading: 'Candidate and employer journeys',
         body:
-          'Student, HR, Admin, Platform, and Audit dashboards are available after authentication with role-based access control.',
-        items: ['Student: jobs, applications, alerts', 'HR: openings, candidates, interviews', 'Admin/Platform/Audit: controls, billing, governance']
+          'Job seekers can move into search, profile, application, and guidance pages. Employers can move into company visibility, service information, hiring support, and protected account areas.',
+        items: [
+          'Candidates: jobs, applications, profile improvement, and hiring guidance',
+          'Employers: recruiter journeys, companies, services, and employer support',
+          'Experienced professionals: dedicated discovery routes and tailored positioning'
+        ]
       },
       {
-        heading: 'Support and legal',
+        heading: 'Support and trust resources',
         body:
-          'Help center, grievances, fraud alerts, privacy policy, and terms are available in the footer section.'
+          'Support pages help users raise concerns, find guidance, understand policies, and navigate the platform with greater confidence.'
+      },
+      {
+        heading: 'Why this page matters',
+        body:
+          'Use the sitemap when you want a fast overview of the site structure, need to compare content areas, or want to move quickly between discovery, support, and policy pages.'
       }
     ]
   },
@@ -523,75 +500,47 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Credits',
     eyebrow: 'Acknowledgements',
     summary:
-      'At HHH Jobs, we acknowledge the people, technologies, and contributors who make the platform valuable and reliable.',
+      'HHH Jobs is shaped by product thinking, editorial discipline, partner trust, and the feedback of people who use the platform every day.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: 'Platform stewardship',
         body:
-          'Our Credits page is dedicated to recognizing efforts across design, development, content, and support. We are grateful for the collective contributions that strengthen our platform for both job seekers and employers.'
+          'This page recognises the collective effort behind HHH Jobs. A credible hiring platform depends on clear thinking, careful execution, and the people who uphold standards across every part of the experience.'
       },
       {
-        heading: 'Platform Development & Technology',
+        heading: 'Content and editorial quality',
         body:
-          'HHH Jobs is powered by modern technologies and expert development practices that ensure performance, security, and scalability. We appreciate the tools, libraries, frameworks, and services used in building and maintaining our platform, including:',
+          'Strong public content helps users move with confidence. We value the editorial effort that turns hiring topics, policy information, and support guidance into pages that are easy to understand and useful to act on.',
         items: [
-          'Front-end and back-end frameworks',
-          'Database and cloud services',
-          'API integrations and security protocols',
-          'Analytics and performance monitoring tools'
+          'Audience-first writing that explains without overwhelming',
+          'Clear structure that helps users find answers quickly',
+          'A tone that respects both employers and job seekers'
         ]
       },
       {
-        heading: 'Technology Impact',
+        heading: 'Design and experience standards',
         body:
-          'These technologies help us deliver a smooth, secure, and responsive user experience across devices.'
+          'We also recognise the discipline required to create pages, interactions, and layouts that feel professional, accessible, and easy to trust. Good design reduces confusion and improves decisions.'
       },
       {
-        heading: 'Content, Design & User Experience',
+        heading: 'Employer and candidate insight',
         body:
-          'Creating helpful content and intuitive design is fundamental to HHH Jobs. We thank the professionals involved in:',
+          'Real-world feedback from employers, candidates, and experienced professionals plays an important role in shaping the platform. Their perspective helps us understand what needs to be clearer, faster, and more valuable.',
         items: [
-          'Website content writing and editorial guidance',
-          'User interface (UI) and visual design',
-          'Accessibility, usability, and navigation enhancements',
-          'Brand messaging and tone development'
+          'Hiring-side feedback on role clarity and candidate quality',
+          'Candidate-side feedback on trust, usability, and communication',
+          'Professional input that improves relevance across pages and flows'
         ]
       },
       {
-        heading: 'Experience Outcome',
+        heading: 'Partners and support functions',
         body:
-          'Their work ensures you have clear information, easy navigation, and a positive experience on every page.'
+          'The platform also benefits from operational support, business partnerships, and responsible coordination that keep the experience responsive and dependable.'
       },
       {
-        heading: 'Partners & Contributors',
+        heading: 'A continuing commitment',
         body:
-          'We acknowledge the support and collaboration of individuals and organizations who have contributed to HHH Jobs, including:',
-        items: [
-          'Strategic advisors and industry experts',
-          'Beta testers and early adopters who provided valuable feedback',
-          'Support team members who assist users every day',
-          'Community champions who help spread the word'
-        ]
-      },
-      {
-        heading: 'Community Value',
-        body:
-          'Your input and participation play a key role in shaping the growth and evolution of our platform.'
-      },
-      {
-        heading: 'Sources & Inspiration',
-        body:
-          'Some aspects of HHH Jobs content and features are inspired by industry standards and best practices in hiring technology, HR trends, and user-centric design. Where applicable, references and credits to specific sources are documented for transparency.'
-      },
-      {
-        heading: 'Thank You',
-        body:
-          'The success of HHH Jobs is not just about technology, it is about people. We thank everyone involved in the journey so far and those continuing to support our mission of clarity, speed, and trust.'
-      },
-      {
-        heading: 'Closing Note',
-        body:
-          'Your contribution, whether big or small, makes a difference. HHH Jobs - a collaborative effort by professionals, for professionals.'
+          'HHH Jobs continues to evolve through thoughtful improvement. We remain committed to raising the standard of the platform in ways that serve people, not just systems.'
       }
     ]
   },
@@ -599,56 +548,47 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Help Center',
     eyebrow: 'Support',
     summary:
-      'Welcome to the HHH Jobs Help Center, your go-to resource for answers, support, and step-by-step guidance.',
+      'Find clear answers, practical guidance, and the right support path for using HHH Jobs with confidence.',
     sections: [
       {
-        heading: 'Support & Guidance for Your Hiring Journey',
+        heading: 'Start with the right support path',
         body:
-          'Whether you are an employer posting your first job, a job seeker navigating applications, or you need help with your HHH Jobs account, we are here to make every step clear, easy, and stress-free.'
+          'The Help Center is designed to reduce uncertainty. Whether you are applying for jobs, managing hiring activity, or resolving an account issue, start here to find the right route quickly.'
       },
       {
-        heading: 'What You Will Find Here',
+        heading: 'Help for job seekers',
         body:
-          'Our Help Center is designed to be intuitive and user-friendly, offering support across key areas:',
+          'Candidates can use this area to understand job search steps, profile quality, application progress, account access, and other practical questions that affect day-to-day use.',
         items: [
-          'Getting Started - Create your account, build your profile, and navigate the dashboard with confidence.',
-          'For Job Seekers - Search jobs, apply with your resume, manage applications, and optimize profile visibility.',
-          'For Employers - Post jobs, manage listings, review applicants, use filters, and communicate efficiently.',
-          'Account & Settings - Update profile details, reset password, and manage email notifications.',
-          'Platform Features - Understand application tracking, messaging, and other platform tools.'
+          'Creating and managing a complete profile',
+          'Understanding applications, updates, and next steps',
+          'Navigating access, password, and account support'
         ]
       },
       {
-        heading: 'Common Questions Answered',
+        heading: 'Help for employers',
         body:
-          'Our Help Center provides clear answers to frequently asked questions such as:',
+          'Employers can use the Help Center to understand posting workflows, candidate review, support routes, and the best page for resolving operational questions.',
         items: [
-          'How do I post a job listing?',
-          'How do I edit my profile or job post?',
-          'How do I submit or update a job application?',
-          'What should I do if I forget my password?',
-          'How can I contact support if I need further assistance?'
+          'Posting and managing hiring requirements',
+          'Understanding employer support and service routes',
+          'Resolving platform questions that affect hiring activity'
         ]
       },
       {
-        heading: 'Guided Support',
+        heading: 'When to use another page',
         body:
-          'Each topic includes step-by-step guidance so you can find what you need quickly and confidently.'
+          'Some concerns are better handled through a specialised page. Use Report Issue for platform or listing problems, Grievances for formal complaints, and Contact Us when you need direct assistance.'
       },
       {
-        heading: 'Need More Help?',
+        heading: 'What helps support respond faster',
         body:
-          'If you do not find the answer you are looking for, our support team is here to assist you. Reach out through the contact form or support link on this page, and a team member will respond promptly.'
+          'When contacting support, include the page you were using, the action you took, and any relevant screenshots or account details. Clear context helps our team respond more accurately.'
       },
       {
-        heading: 'Our Commitment',
+        heading: 'Our support promise',
         body:
-          'At HHH Jobs, your satisfaction and success on our platform are top priorities. We are committed to providing helpful, responsive support whenever you need it.'
-      },
-      {
-        heading: 'Get Started',
-        body:
-          'Browse Help Center topics, follow the guides, and feel confident using HHH Jobs to manage your job search or hiring process. HHH Jobs - where clarity, speed, and trust make hiring easier for everyone.'
+          'We aim to make support practical, respectful, and easy to follow. The Help Center exists to keep users informed, reduce unnecessary friction, and guide each person to the right next step.'
       }
     ]
   },
@@ -656,68 +596,43 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Summons / Notices',
     eyebrow: 'Legal',
     summary:
-      'At HHH Jobs, we are committed to transparency and keeping users informed about important legal and policy updates.',
+      'This page is reserved for official legal, regulatory, or policy communications that users may need to review carefully.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: 'Purpose of this page',
         body:
-          'The Summons & Notices page is where we share official legal communications or policy-related notices relevant to our services, terms, or user obligations.'
+          'HHH Jobs uses this page as a formal public record for notices that are significant to platform operations, legal compliance, policy changes, or user obligations.'
       },
       {
-        heading: 'What Are Summons & Notices?',
+        heading: 'What are summons and notices',
         body:
-          'A summons is an official communication, typically issued in legal, regulatory, or administrative contexts, that notifies a party about a required action or response. A notice is broader and refers to information shared to alert users about changes, obligations, updates, or actions they may need to take. In legal practice, a summons usually requires a response or appearance, while a notice informs about rights, deadlines, or process changes.',
+          'A summons is generally a formal communication issued in a legal, regulatory, or administrative context that may require a response. A notice is broader and usually communicates updates, obligations, deadlines, or policy changes that users should be aware of.',
       },
       {
-        heading: 'Why This Page Exists',
+        heading: 'What may appear here',
         body:
-          'While most interactions on HHH Jobs are straightforward and digital, there may be occasions where we need to share formal communications affecting user rights, safety, or compliance. This page serves as the authoritative source for:',
+          'When necessary, this page may include important communications such as:',
         items: [
-          'Official notices regarding changes to policies',
-          'Legal summons or court orders served to HHH Jobs',
-          'Regulatory communications that affect platform operations',
-          'Public updates about service terms, data handling, or compliance requirements'
+          'Policy notices that materially affect platform use',
+          'Regulatory or legal communications relevant to users',
+          'Compliance-related announcements linked to account or service obligations',
+          'Formal updates concerning data, conduct, or service terms'
         ]
       },
       {
-        heading: 'How We Share Summons & Notices',
+        heading: 'How to read these communications',
         body:
-          'To ensure clarity and accessibility:',
+          'Each published communication should be reviewed for its date, scope, and any actions required. If a notice relates to your account or activity, read it in full before taking any next step.',
         items: [
-          'Summons or notices are published in the form they are officially received',
-          'Each communication includes dates, subject matter, and guidance on next steps',
-          'Where applicable, we explain what actions users may need to take'
+          'Check whether the notice applies to all users or only a specific category',
+          'Review any dates, deadlines, or required responses carefully',
+          'Use the contact route provided if clarification is needed'
         ]
       },
       {
-        heading: 'Our Commitment',
+        heading: 'Questions and clarification',
         body:
-          'This is part of our commitment to clarity, speed, and trust - our core principles at HHH Jobs.'
-      },
-      {
-        heading: 'Why This Matters',
-        body:
-          'By making official communications publicly available:',
-        items: [
-          'You can verify the authenticity and relevance of notices',
-          'You have clear information about any legal or policy obligations',
-          'You understand how changes may impact your use of the HHH Jobs platform'
-        ]
-      },
-      {
-        heading: 'User Benefit',
-        body:
-          'Staying informed helps protect your rights and ensures compliance with applicable procedures.'
-      },
-      {
-        heading: 'Questions or Support',
-        body:
-          'If you have questions about a specific summons or notice listed on this page, or if you need clarification on how it affects your account or activity, please contact our support team. We are here to help you understand and navigate any required actions.'
-      },
-      {
-        heading: 'Closing Note',
-        body:
-          'HHH Jobs - keeping you informed with transparency and professionalism.'
+          'If you need help understanding a specific notice, contact HHH Jobs support through the appropriate route so the matter can be reviewed and clarified responsibly.'
       }
     ]
   },
@@ -725,62 +640,50 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Grievances',
     eyebrow: 'Resolution',
     summary:
-      'At HHH Jobs, we believe in a fair, respectful, and transparent environment for all users.',
+      'HHH Jobs provides a formal route for concerns that require fair review, clear documentation, and responsible resolution.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: 'When to use the grievance route',
         body:
-          'Our Grievances page is dedicated to addressing concerns, feedback, and complaints in a structured and supportive way. We understand that issues can arise during the hiring process or while using any online platform. What matters most is how concerns are heard, acknowledged, and resolved.'
+          'Use the grievance process when a concern is serious enough to require structured review, documented follow-up, and a formal response rather than a simple support answer.'
       },
       {
-        heading: 'What Is a Grievance?',
+        heading: 'What counts as a grievance',
         body:
-          'A grievance is any concern, complaint, or feedback you may have regarding your experience with HHH Jobs. This can include:',
+          'A grievance may relate to platform conduct, listing concerns, account handling, service quality, or another issue that has materially affected your experience. This may include:',
         items: [
-          'Issues with job postings or applications',
-          'Discrepancies in communication between candidates and employers',
-          'Problems navigating the platform',
-          'Questions about terms, fees, or account activity',
-          'Concerns related to user conduct, policies, or safety'
+          'Concerns about job postings, applications, or communication',
+          'Questions regarding conduct, fairness, or platform standards',
+          'Issues involving policy interpretation, account handling, or service experience',
+          'Safety-related concerns that require a formal record and review'
         ]
       },
       {
-        heading: 'Our Assurance',
+        heading: 'How grievances are reviewed',
         body:
-          'We take all grievances seriously, no matter how big or small, because your trust is important to us.'
-      },
-      {
-        heading: 'How We Handle Grievances',
-        body:
-          'Our grievance resolution process is designed to be fair, transparent, and timely:',
+          'Every grievance is reviewed through a process built around fairness, documentation, and accountability:',
         items: [
-          '1. Submission - You can submit a grievance through the grievance form on this page or via support contact options. Please provide complete details.',
-          '2. Acknowledgment - Our support team confirms receipt and shares next steps with approximate timelines.',
-          '3. Review & Assessment - We review all details and may request additional information if needed.',
-          '4. Resolution - We address concerns professionally and communicate outcomes clearly.',
-          '5. Follow-Up - We continue support for any follow-up questions until the issue is fully addressed.'
+          'Submission of the concern with complete background information',
+          'Acknowledgement and initial triage by the relevant team',
+          'Review of facts, records, and any supporting material',
+          'Clear response outlining findings, action, or next steps',
+          'Further follow-up when additional clarification is required'
         ]
       },
       {
-        heading: 'Our Commitment to You',
+        heading: 'What helps us resolve matters well',
         body:
-          'By providing a structured grievance process, we aim to:',
-        items: [
-          'Maintain fairness and accountability',
-          'Improve user experience',
-          'Foster trust and confidence',
-          'Address concerns quickly and respectfully'
-        ]
+          'The strongest grievance submissions are factual, specific, and well documented. Helpful details include dates, screenshots, account identifiers, and a concise explanation of the concern and expected resolution.'
       },
       {
-        heading: 'Need to Submit a Grievance?',
+        heading: 'Our commitment to fairness',
         body:
-          'If you have a concern, question, or complaint, use the grievance form below or contact our support team directly. We are here to listen and assist you with professionalism and care.'
+          'HHH Jobs takes grievances seriously because trust is central to platform credibility. The aim is to review concerns with care, respond respectfully, and improve the experience where improvement is needed.'
       },
       {
-        heading: 'Closing Note',
+        heading: 'Need to submit a grievance?',
         body:
-          'HHH Jobs - dedicated to fairness and clarity.'
+          'If your concern requires formal review, use the grievance route with complete details so the matter can be assessed accurately and without unnecessary delay.'
       }
     ]
   },
@@ -788,65 +691,50 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Report an Issue',
     eyebrow: 'Issue Reporting',
     summary:
-      'At HHH Jobs, we strive to provide a seamless, professional, and reliable platform for both job seekers and employers.',
+      'Use this page to report technical issues, suspicious activity, or platform problems that require review and action.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: 'What should be reported here',
         body:
-          'We understand that from time to time, you may encounter challenges or unexpected issues while using our services. That is why we have created the Report an Issue page, your direct channel to let us know when something is not right so we can fix it quickly.'
+          'This route is best for platform errors, broken workflows, misleading listings, suspicious activity, or anything else that affects safe and reliable use of HHH Jobs.'
       },
       {
-        heading: 'Why Reporting Matters',
+        heading: 'Common report types',
         body:
-          'Whether it is a technical problem, content discrepancy, or concern about a listing or interaction, reporting issues helps us maintain a safe and efficient hiring environment for everyone.'
-      },
-      {
-        heading: 'What Can You Report?',
-        body:
-          'You can use this page to report a variety of concerns, including:',
+          'You can use this page for problems such as:',
         items: [
-          'Technical Glitches - Errors on the site, broken links, login problems, or issues submitting applications or postings.',
-          'Incorrect or Suspicious Content - Listings, profiles, or messages that look misleading, inappropriate, or potentially fraudulent.',
-          'Policy Violations - Cases where a user may have violated terms of service, community standards, or misused the platform.',
-          'Communication Issues - Problems related to messages, responses, or unclear interactions between job seekers and employers.'
+          'Login, application, posting, or navigation failures',
+          'Suspicious listings, misleading content, or unsafe behaviour',
+          'Broken links, incorrect information, or visual defects that affect usability',
+          'Policy concerns that need investigation but are not yet a formal grievance'
         ]
       },
       {
-        heading: 'How Reporting Works',
+        heading: 'How the review process works',
         body:
-          'Our process is clear and action-oriented:',
+          'Most issue reviews follow a simple path from submission to acknowledgement, investigation, and follow-up. The more precise the report, the easier it is to review efficiently.',
         items: [
-          '1. Submit Your Report - Fill out the form on this page with as much detail as possible.',
-          '2. Acknowledgment - Our support team confirms receipt and begins review.',
-          '3. Investigation - We investigate thoroughly and take appropriate action based on policies and findings.',
-          '4. Follow-Up - If needed, we contact you for additional details or provide updates.'
+          'Submit the issue with clear context',
+          'Receive acknowledgement and initial review',
+          'Allow time for investigation or clarification if needed',
+          'Receive an update or resolution path from the team'
         ]
       },
       {
-        heading: 'Your Feedback Helps Us Improve',
+        heading: 'What helps us investigate faster',
         body:
-          'By reporting issues, you help us:',
+          'Helpful reports usually include the page name, the action taken, what went wrong, and any visual proof that can help confirm the issue quickly.',
         items: [
-          'Enhance platform performance',
-          'Remove inappropriate or unsafe content',
-          'Maintain a trustworthy community',
-          'Improve overall user experience'
+          'Mention whether the issue affects candidates, employers, or both',
+          'Add screenshots when the problem is visual or workflow-related',
+          'Share listing links, usernames, or timestamps where relevant',
+          'State whether the issue is urgent, repeated, or safety-related'
         ]
       },
       {
-        heading: 'Our Commitment',
+        heading: 'When to use another route',
         body:
-          'We value your trust and take every report seriously.'
-      },
-      {
-        heading: 'Need Additional Support?',
-        body:
-          'If you are unsure whether your concern should be reported here, or if you need help with something else, reach out through the contact options on our website.'
-      },
-      {
-        heading: 'Closing Note',
-        body:
-          'Thank you for helping make HHH Jobs a professional, safe, and effective hiring platform. HHH Jobs - where clarity, speed, and trust meet support and reliability.'
+          'If the matter is a formal complaint, use the Grievances page. If you need general support or guidance, use Contact Us or the Help Center for the fastest route.'
       }
     ]
   },
@@ -854,68 +742,58 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Privacy Policy',
     eyebrow: 'Policy',
     summary:
-      'At HHH Jobs, we are committed to protecting your privacy and handling personal information with care and transparency.',
+      'This Privacy Policy explains how HHH Jobs collects, uses, protects, and manages personal information in connection with its services.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: '1. Scope and effective date',
         body:
-          'Effective Date: March 2, 2026. This Privacy Policy explains what data we collect, how we use it, whom we may share it with, how it is protected, and your rights as a user of our platform.'
+          'Effective Date: March 2, 2026. This policy applies to information collected through HHH Jobs when users browse the platform, create accounts, apply for opportunities, manage hiring activity, or contact the team.'
       },
       {
-        heading: '1. Information We Collect',
+        heading: '2. Information we collect',
         body:
-          'We may collect personal information that you voluntarily provide when using our services, such as:',
+          'We may collect information that users provide directly, along with technical and usage information needed to operate, secure, and improve the platform. This may include:',
         items: [
-          'Name, email address, phone number',
-          'Professional or business details (for example, job title and company name)',
-          'Login credentials and account profile data',
-          'IP address, device and browser information, pages visited, and interaction activity'
+          'Name, email address, phone number, and profile details',
+          'Professional, employment, or business information relevant to the service',
+          'Account credentials and communication records',
+          'Device, browser, IP, usage, and interaction data'
         ]
       },
       {
-        heading: '2. How Your Information Is Used',
+        heading: '3. How information is used',
         body:
-          'Your information may be used to provide and personalize services, manage your account, communicate updates, facilitate hiring workflows, and improve platform performance. We do not collect more information than needed for these purposes.'
+          'Information may be used to create and manage accounts, support hiring and application workflows, communicate service updates, maintain security, respond to support requests, and improve platform quality. We aim to collect and use only what is reasonably necessary for these purposes.'
       },
       {
-        heading: '3. Sharing Your Information',
+        heading: '4. When information may be shared',
         body:
-          'HHH Jobs may share your personal data with service providers and partners that help operate the platform, legal authorities when required by law, and other users when you use public features such as job applications. We do not sell your personal data to third parties for commercial purposes.'
+          'HHH Jobs may share information with service providers and operational partners that help deliver the platform, with employers or candidates where that sharing is necessary for service use, and with lawful authorities where disclosure is required. HHH Jobs does not sell personal data for commercial resale.'
       },
       {
-        heading: '4. Cookies and Tracking Technologies',
+        heading: '5. Cookies and similar technologies',
         body:
-          'We use cookies and similar technologies to improve user experience, understand site usage, and remember preferences. This may include first-party and third-party cookies. You can manage cookie settings through your browser.'
+          'Cookies and similar technologies may be used to support account sessions, remember preferences, understand usage, and improve performance. Users may manage cookie behaviour through browser settings, subject to the impact on site functionality.'
       },
       {
-        heading: '5. Data Security',
+        heading: '6. Security and retention',
         body:
-          'We employ reasonable administrative, technical, and physical safeguards to protect your personal data against unauthorized access, loss, or misuse. While no method of transmission or storage is completely secure, we use industry-standard protections to help keep your information safe.'
+          'HHH Jobs uses reasonable administrative, technical, and organisational safeguards to protect personal information against unauthorised access, loss, misuse, or disclosure. Information may be retained for as long as it is needed for service delivery, compliance, security, or legitimate operational purposes.'
       },
       {
-        heading: '6. Your Rights',
+        heading: '7. Your rights and choices',
         body:
-          'You may have the right to:',
+          'Depending on applicable law and the nature of your relationship with the platform, you may have rights regarding your personal information, such as:',
         items: [
-          'Access, correct, or delete your personal information',
-          'Opt out of marketing communications',
-          'Request information about how your data is processed'
+          'Accessing, correcting, or requesting deletion of certain information',
+          'Managing communication preferences',
+          'Requesting more information about how data is used'
         ]
       },
       {
-        heading: '7. Changes to This Policy',
+        heading: '8. Policy updates and contact',
         body:
-          'We may update this Privacy Policy from time to time to reflect changes in law, technology, or our platform. Any updates will be posted here with the updated effective date.'
-      },
-      {
-        heading: 'Contact Us',
-        body:
-          'If you have questions about this Privacy Policy or wish to exercise your rights, please contact our support team through the contact details provided on our website.'
-      },
-      {
-        heading: 'Closing Note',
-        body:
-          'HHH Jobs - your privacy matters.'
+          'This policy may be updated from time to time to reflect changes in law, technology, operations, or platform features. Updated versions will be posted on this page with the revised effective date. If you have questions about this policy or need to raise a data-related request, please use the contact or support routes listed on HHH Jobs.'
       }
     ]
   },
@@ -923,108 +801,78 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Terms & Conditions',
     eyebrow: 'Policy',
     summary:
-      'Welcome to HHH Jobs. These Terms and Conditions govern your use of our website, services, and platform.',
+      'These Terms and Conditions govern access to and use of HHH Jobs, including its public pages, accounts, services, and related interactions.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: '1. Acceptance of terms',
         body:
-          'Effective Date: March 2, 2026. By accessing or using HHH Jobs, you agree to abide by these Terms and Conditions, so please read them carefully.'
+          'Effective Date: March 2, 2026. By accessing or using HHH Jobs, users agree to these Terms and Conditions. If you do not agree, you should not use the platform or its services.'
       },
       {
-        heading: '1. Acceptance of Terms',
+        heading: '2. Eligibility and account information',
         body:
-          'By using the HHH Jobs platform, including accessing job listings, posting opportunities, submitting applications, or engaging with any feature, you confirm that you accept these Terms and Conditions. If you do not agree with any part of these terms, please do not use our services.'
+          'Users must meet the applicable age and eligibility requirements for account creation and use. By registering, you confirm that the information you provide is accurate, current, and complete.'
       },
       {
-        heading: '2. Who Can Use HHH Jobs',
+        heading: '3. Account security',
         body:
-          'You must be at least 18 years old or of legal age in your country to use our platform. By creating an account, you represent that you meet this requirement and that all information you provide is accurate and complete.'
-      },
-      {
-        heading: '3. Accounts and Security',
-        body:
-          'When you register on HHH Jobs, you agree to:',
+          'Users are responsible for maintaining the confidentiality of their credentials and for activity that occurs under their account. You should notify HHH Jobs promptly if you believe your account has been compromised.',
         items: [
-          'Provide truthful and current information',
-          'Keep your login credentials confidential',
-          'Notify us immediately if your account is compromised'
+          'Provide truthful and current registration details',
+          'Protect account credentials from unauthorised use',
+          'Inform HHH Jobs promptly of suspected misuse'
         ]
       },
       {
-        heading: 'Account Responsibility',
+        heading: '4. Listings, applications, and platform role',
         body:
-          'You are responsible for all activity that occurs under your account. HHH Jobs is not responsible for unauthorized access due to account misuse.'
+          'Employers must provide lawful, accurate, and non-misleading job information. Candidates must provide truthful and relevant application details. HHH Jobs operates as a platform that supports connections between parties but does not guarantee hiring outcomes, placements, or suitability.'
       },
       {
-        heading: '4. Job Listings and Applications',
+        heading: '5. Acceptable conduct',
         body:
-          'Employers posting job opportunities must provide accurate, lawful, and non-discriminatory information. Job seekers must submit truthful and relevant details when applying. HHH Jobs is a platform provider, not an employer or recruiter. We facilitate connections between employers and candidates but do not guarantee employment, placement, or suitability of any job or applicant.'
-      },
-      {
-        heading: '5. User Conduct',
-        body:
-          'While using HHH Jobs, you agree to:',
+          'Users must engage with the platform and one another respectfully and lawfully. The following standards apply to all interactions:',
         items: [
           'Communicate respectfully with other users',
-          'Avoid harassment, abuse, or discriminatory behaviour',
-          'Not upload harmful, misleading, or illegal content',
+          'Avoid harassment, abuse, discrimination, or deception',
+          'Do not upload unlawful, harmful, or misleading content',
           'Comply with all applicable laws'
         ]
       },
       {
-        heading: 'Policy Enforcement',
+        heading: '6. Content ownership and permitted use',
         body:
-          'We may suspend or terminate accounts that violate these standards.'
+          'Unless otherwise stated, platform content, branding, copy, graphics, and software are owned by HHH Jobs or its licensors. Users may access and use this content only as necessary for lawful use of the platform and may not reproduce or distribute it without permission.'
       },
       {
-        heading: '6. Content Ownership and Use',
+        heading: '7. Service availability and limitation of liability',
         body:
-          'All content on HHH Jobs, including text, graphics, logos, and software, is owned by HHH Jobs or its partners. You may not copy, reproduce, or distribute content without written permission, except as necessary for platform use, such as applying for a job.'
-      },
-      {
-        heading: '7. Limitation of Liability',
-        body:
-          'HHH Jobs provides the platform "as is" and does not guarantee that the site will be error-free or uninterrupted. We are not responsible for:',
+          'HHH Jobs aims to provide a reliable platform but does not guarantee uninterrupted, error-free, or outcome-assured service. To the extent permitted by law, liability is limited in relation to matters such as:',
         items: [
-          'Employment outcomes',
-          'Accuracy of third-party content',
-          'Losses resulting from use of the platform'
+          'Employment or recruitment outcomes',
+          'Accuracy of third-party content or conduct',
+          'Losses arising from platform use, interruption, or reliance'
         ]
       },
       {
-        heading: 'Liability Cap',
+        heading: '8. Suspension or termination',
         body:
-          'To the maximum extent permitted by law, our liability is limited.'
-      },
-      {
-        heading: '8. Termination',
-        body:
-          'HHH Jobs may suspend or terminate your access if:',
+          'HHH Jobs may suspend or terminate access where necessary to protect users, enforce policy, or comply with legal obligations, including situations such as:',
         items: [
-          'You violate these terms',
-          'We suspect fraudulent or harmful activity',
-          'Required by law or safety reasons'
+          'Violation of these terms',
+          'Suspected fraudulent or harmful activity',
+          'Requirements arising from law, compliance, or safety'
         ]
       },
       {
-        heading: 'Termination Effect',
+        heading: '9. Changes to these terms',
         body:
-          'Termination does not affect rights or obligations incurred before termination.'
+          'These Terms and Conditions may be updated from time to time. Revised terms will be posted on this page with an updated effective date, and continued use after that point indicates acceptance of the revised version.'
       },
       {
-        heading: '9. Changes to Terms',
+        heading: '10. Governing law and contact',
         body:
-          'We may update these Terms and Conditions from time to time. Updated terms will be posted on this page with a revised effective date. Continued use of the platform after changes means you accept the updated terms.'
-      },
-      {
-        heading: '10. Governing Law',
-        body:
-          'These Terms and Conditions are governed by the laws of the jurisdiction where HHH Jobs operates. Any legal disputes will be subject to applicable law and competent courts.'
-      },
-      {
-        heading: 'Contact Us',
-        body:
-          'If you have questions or concerns about these Terms and Conditions, reach out to our support team through the contact options on our website. HHH Jobs power hiring with trust and clarity.'
+          'These terms are governed by the laws applicable to the jurisdiction in which HHH Jobs operates, subject to any mandatory legal requirements. Questions about these terms may be directed through the appropriate HHH Jobs contact route.'
       }
     ]
   },
@@ -1032,90 +880,61 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Fraud Alert',
     eyebrow: 'Safety',
     summary:
-      'At HHH Jobs, your security and trust are top priorities in every hiring interaction.',
+      'Stay alert to scams, misleading offers, and suspicious communication that can appear in online hiring environments.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: 'Why this page matters',
         body:
-          'While most job seekers and employers use our platform safely and professionally, online hiring environments can sometimes attract fraudulent activity. This page helps you stay informed, vigilant, and protected against scams, misleading offers, and suspicious behaviour.'
+          'Most activity on HHH Jobs is genuine and professional, but online hiring always requires vigilance. This page helps users recognise common warning signs and respond with care.'
       },
       {
-        heading: 'What Is Fraud?',
+        heading: 'What fraud can look like',
         body:
-          'Fraud refers to deceptive actions or schemes designed to mislead users for personal or financial gain. In a job marketplace, fraudulent activity can include:',
+          'Fraud in hiring environments usually involves deception intended to obtain money, sensitive information, or trust under false pretences. Common examples include:',
         items: [
-          'Fake job postings that request payment or personal details',
-          'Offers that seem too good to be true',
-          'Requests for money, gift cards, or sensitive information',
-          'Unverified recruiters or unsolicited contact from unknown sources'
+          'Fake job offers requesting fees, deposits, or payments',
+          'Requests for sensitive financial or identity details too early in the process',
+          'Impersonation of recruiters, companies, or support teams',
+          'Unrealistic offers designed to pressure quick decisions'
         ]
       },
       {
-        heading: 'Policy Position',
+        heading: 'Warning signs to notice early',
         body:
-          'These activities are not permitted on HHH Jobs and are strictly against our policies.'
-      },
-      {
-        heading: 'How to Spot Fraudulent Activity',
-        body:
-          'Being alert to red flags can help you protect yourself. Watch out for:',
+          'The following patterns often signal elevated risk:',
         items: [
-          'Unusual Payment Requests - Legitimate employers will never ask for money to apply, secure a position, or access training.',
-          'Requests for Sensitive Information Upfront - Be cautious if someone asks for bank details, tax ID, or private data before a formal hiring process.',
-          'Poor Grammar or Unprofessional Communication - Fake offers often contain vague messages, unclear descriptions, or unofficial channels.',
-          'Unrealistic Salary Promises - Exceptionally high pay promises with little effort may indicate a scam.'
+          'Any request for money, gift cards, or paid access to secure a role',
+          'Pressure to share bank details, passwords, or identity data without a valid process',
+          'Messages sent through suspicious channels with vague or rushed language',
+          'Job offers that promise unusually high rewards with very little scrutiny'
         ]
       },
       {
-        heading: 'How HHH Jobs Helps Protect You',
+        heading: 'How HHH Jobs helps reduce risk',
         body:
-          'We use a combination of technology and policy safeguards:',
+          'HHH Jobs works to reduce fraud through a mix of review practices, policy enforcement, and user reporting tools:',
         items: [
-          'Monitoring and filtering of suspicious listings or accounts',
-          'Verification practices for employer profiles',
-          'Secure communication channels within the platform',
-          'Reporting tools that let you flag concerns immediately'
+          'Monitoring for suspicious listings and account activity',
+          'Verification measures where appropriate',
+          'Clear reporting routes for suspicious behaviour',
+          'Support follow-up when credible concerns are raised'
         ]
       },
       {
-        heading: 'Shared Responsibility',
+        heading: 'What to do if something feels wrong',
         body:
-          'Fraud prevention is a shared responsibility, and your awareness plays a key role.'
-      },
-      {
-        heading: 'What to Do If You Encounter Fraud',
-        body:
-          'If you believe you have encountered a fraudulent employer, message, job post, or user:',
+          'If you believe a listing, message, or account may be fraudulent, act carefully and avoid further engagement until the matter is reviewed.',
         items: [
           'Do not respond further to suspicious communication',
-          'Report the issue immediately using platform reporting tools or the contact form on this page',
-          'Provide details such as screenshots, usernames, and descriptions to support investigation'
+          'Report the concern through HHH Jobs as soon as possible',
+          'Preserve screenshots, links, names, and relevant context',
+          'Avoid sharing money or sensitive information until legitimacy is confirmed'
         ]
       },
       {
-        heading: 'Our Response',
+        heading: 'Safe application habits',
         body:
-          'We take all reports seriously and act promptly to protect our community.'
-      },
-      {
-        heading: 'Stay Safe and Secure',
-        body:
-          'Fraud prevention helps ensure:',
-        items: [
-          'Employers find quality candidates without disruption',
-          'Job seekers pursue genuine opportunities',
-          'The HHH Jobs community remains professional and trustworthy'
-        ]
-      },
-      {
-        heading: 'Need Help?',
-        body:
-          'If you need help identifying a suspicious offer or have questions about our safety measures, our support team is here to assist you.'
-      },
-      {
-        heading: 'Closing Note',
-        body:
-          'HHH Jobs - committed to your security and trust.'
+          'Good caution protects both candidates and employers. Read listings carefully, verify communication, question unusual urgency, and use official support routes whenever something appears inconsistent or unsafe.'
       }
     ]
   },
@@ -1123,66 +942,43 @@ export const FOOTER_PAGE_CONTENT = {
     title: 'Trust & Safety',
     eyebrow: 'Safety',
     summary:
-      'At HHH Jobs, trust and safety are central to creating a secure, respectful, and transparent hiring platform.',
+      'Trust and safety are essential to a hiring platform where people share information, evaluate opportunity, and make consequential decisions.',
     sections: [
       {
-        heading: 'HHH Jobs',
+        heading: 'Our trust standard',
         body:
-          'At HHH Jobs, your trust and safety are at the heart of everything we do. Whether you are searching for the right job or seeking quality candidates, we strive to provide a secure, respectful, and transparent environment across our platform. Our Trust & Safety page explains how we protect our users, maintain integrity, and promote a professional hiring experience you can depend on.'
+          'HHH Jobs is designed to support a professional environment where listings, communication, and account behaviour are held to clear standards of credibility and respect.'
       },
       {
-        heading: 'Our Commitment to Safety',
+        heading: 'How we protect the platform',
         body:
-          'We understand that online hiring involves sensitive information, personal communication, and real career opportunities. That is why we prioritize safety practices that protect:',
+          'Trust is supported through policy, review, reporting, and operational oversight. The aim is to reduce misuse, respond to concerns responsibly, and maintain a more dependable experience for all users.',
         items: [
-          'Your personal data and privacy',
-          'The authenticity of job listings and user profiles',
-          'Communications between employers and job seekers',
-          'Fair and respectful interactions'
+          'Review practices that help reduce misleading or unsafe activity',
+          'Policies that define acceptable behaviour and content quality',
+          'Support and reporting routes for concerns that need attention',
+          'Responsible handling of account and usage information'
         ]
       },
       {
-        heading: 'How We Keep HHH Jobs Secure',
+        heading: 'Respectful conduct matters',
         body:
-          'To maintain a safe platform, we employ a combination of advanced technology and proactive policies:',
-        items: [
-          'Identity Verification - We encourage users to provide accurate information and employ measures to reduce fake profiles or fraudulent activity.',
-          'Secure Data Practices - We use industry-standard safeguards to protect your data, including encryption, secure protocols, and responsible storage practices.',
-          'Monitoring & Review - Our team continually monitors activity to detect unusual behavior, inappropriate content, or policy violations.',
-          'Reporting Tools - If you encounter suspicious listings, inappropriate messages, or violations of our standards, you can report them easily and our support team will investigate promptly.'
-        ]
+          'Candidates, employers, and all other users are expected to communicate professionally and act in good faith. Trust breaks down quickly when information is misleading or conduct is disrespectful.'
       },
       {
-        heading: 'Policies You Can Trust',
+        heading: 'Reporting and enforcement',
         body:
-          'Our platform operates under clear and transparent policies, including:',
-        items: [
-          'Terms of Use - Defines user rights and responsibilities',
-          'Privacy Policy - Details how your data is used, stored, and protected',
-          'Community Standards - Ensures respectful and appropriate interactions',
-          'Content Guidelines - Helps maintain quality and relevance of job postings'
-        ]
+          'When concerns are reported, HHH Jobs may review records, request clarification, limit access, remove content, or take other action that is appropriate to the issue and consistent with platform policy.'
       },
       {
-        heading: 'Your Role in a Safe Community',
+        heading: 'A shared responsibility',
         body:
-          'Trust and safety is a shared responsibility. As a user of HHH Jobs:',
-        items: [
-          'Provide honest and complete information',
-          'Respect others in communication and conduct',
-          'Report concerns you may encounter',
-          'Follow guidelines and platform rules'
-        ]
+          'Platform safety is strongest when users remain attentive, provide accurate information, and report concerns early. A trustworthy environment is maintained through both platform standards and responsible user behaviour.'
       },
       {
-        heading: 'Need Assistance?',
+        heading: 'Support when you need it',
         body:
-          'If you have questions about safety practices, privacy concerns, or need help reporting an issue, our support team is here to help. We take every concern seriously and will respond with care and professionalism.'
-      },
-      {
-        heading: 'Our Promise',
-        body:
-          'At HHH Jobs, we believe that trust is earned and safety is essential. We are committed to protecting you while helping you find opportunities and talent with confidence.'
+          'If you need help with suspicious activity, policy questions, or conduct concerns, use the available support, issue reporting, or grievance routes so the matter can be reviewed through the correct process.'
       }
     ]
   }

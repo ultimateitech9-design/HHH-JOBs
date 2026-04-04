@@ -22,22 +22,22 @@ import { getCurrentUser } from '../../../utils/auth';
 const serviceCards = [
   {
     title: 'Job Discovery',
-    description: 'Smart job search and personalized recommendations that reduce noise.',
+    description: 'Discover stronger-fit opportunities with clearer search and more relevant recommendations.',
     icon: FiBriefcase
   },
   {
     title: 'Resume & Profile',
-    description: 'Build, refine, and strengthen profile visibility for stronger recruiter trust.',
+    description: 'Strengthen resume quality and profile presentation so recruiters can assess you with confidence.',
     icon: FiFileText
   },
   {
     title: 'Career Growth',
-    description: 'Prepare for interviews, review your progress, and improve role readiness.',
+    description: 'Improve interview readiness, track progress, and build momentum with each application cycle.',
     icon: FiTrendingUp
   },
   {
     title: 'Alerts & Notifications',
-    description: 'Track updates, signals, and application movement without missing important actions.',
+    description: 'Stay informed about important updates, application movement, and next steps without losing track.',
     icon: FiBell
   }
 ];
@@ -47,24 +47,24 @@ const premiumFeatures = [
     key: 'fast-track',
     tabLabel: 'Fast Track Application',
     title: 'Fast Track Application',
-    subtitle: 'Priority application boost',
-    description: 'Push your application closer to recruiter review windows when timing matters most.',
+    subtitle: 'Priority application visibility',
+    description: 'Improve the visibility of time-sensitive applications when recruiter review windows are narrow.',
     icon: FiLayers
   },
   {
     key: 'direct-connect',
     tabLabel: 'Direct Recruiter Connect',
     title: 'Direct Recruiter Connect',
-    subtitle: 'Applied jobs status',
-    description: 'Get stronger visibility on updates and recruiter activity around your active applications.',
+    subtitle: 'Application status visibility',
+    description: 'Stay closer to recruiter-side activity and keep application progress easier to understand.',
     icon: FiFileText
   },
   {
     key: 'profile-priority',
     tabLabel: 'Profile Priority Ranking',
     title: 'Profile Priority Ranking',
-    subtitle: 'Recruiter viewed profile',
-    description: 'Increase profile discoverability in premium searches and role-fit recommendations.',
+    subtitle: 'Improved recruiter discovery',
+    description: 'Increase profile discoverability in higher-intent searches and stronger role-fit recommendations.',
     icon: FiShield
   }
 ];
@@ -180,10 +180,10 @@ const resumeDatabasePlans = [
     withQuantity: true
   },
   {
-    title: 'Dimond',
+    title: 'Diamond',
     tone: 'dimond',
     icon: FaGem,
-    subTitle: 'Get customised solutions and dedicated support for bigger hiring needs',
+    subTitle: 'Customised database access and dedicated support for larger, more complex hiring needs',
     price: "Let's customize",
     taxNote: 'Based on your plan',
     features: [
@@ -249,26 +249,26 @@ const ServicesPage = () => {
     <div className="pb-16 md:pb-24">
       <PublicPageHero
         eyebrow="Career Services"
-        title={<>Boost Your Career With <span className="gradient-text">Smart Tools</span></>}
-        description="Explore candidate tools, recruiter plans, and premium features that make HHH Jobs more than a listing platform. This services layer is built to improve visibility, speed, and hiring quality."
-        chips={['Career tools', 'Employer plans', 'ATS support']}
+        title={<>Career Services That Strengthen <span className="gradient-text">Every Hiring Move</span></>}
+        description="Explore the tools, plans, and premium advantages that help candidates present themselves better and help employers hire with more confidence."
+        chips={['Candidate tools', 'Employer plans', 'ATS support']}
         actions={[
           { label: 'Explore Candidate Tools', to: isStudent ? '/portal/student/jobs' : '/sign-up' },
-          { label: 'Open ATS Scanner', to: atsPath, variant: 'ghost' }
+          { label: 'Open ATS Review', to: atsPath, variant: 'ghost' }
         ]}
         metrics={[
-          { label: 'Candidate side', value: '4 Core Tools', helper: 'Jobs, profile, growth, alerts' },
-          { label: 'Premium lane', value: '3 Boosts', helper: 'Priority, visibility, and recruiter signals' },
-          { label: 'Employer side', value: '4 Plans', helper: 'From free posting to premium reach' }
+          { label: 'Candidate Tools', value: '4 Core Services', helper: 'Discovery, profile, growth, and alerts' },
+          { label: 'Premium Features', value: '3 Visibility Boosts', helper: 'Priority, discoverability, and application clarity' },
+          { label: 'Employer Plans', value: '4 Hiring Options', helper: 'From entry-level posting to premium reach' }
         ]}
         aside={
           <div className="rounded-[2rem] bg-gradient-to-br from-slate-950 via-brand-700 to-indigo-700 p-6 text-white shadow-xl">
-            <h2 className="font-heading text-2xl font-extrabold">Why services matter</h2>
+            <h2 className="font-heading text-2xl font-extrabold">Why these services matter</h2>
             <div className="mt-6 space-y-3">
               {[
-                'Improve role discovery and application quality',
-                'Strengthen recruiter visibility and trust signals',
-                'Choose hiring plans based on real team scale'
+                'Improve search quality and application readiness',
+                'Strengthen recruiter trust through better visibility',
+                'Choose hiring plans that match real team demand'
               ].map((item) => (
                 <div key={item} className="rounded-[1.4rem] border border-white/14 bg-white/10 px-4 py-3 text-sm font-semibold text-white/88">
                   {item}
@@ -283,8 +283,8 @@ const ServicesPage = () => {
         <PublicSectionHeader
           centered
           eyebrow="Core Services"
-          title="Everything a candidate needs to keep momentum"
-          description="These modules map directly to the most common candidate workflows: search, improve, apply, and track."
+          title="Services that support a serious job search"
+          description="Each module is built around a practical need: discover stronger roles, improve presentation, apply with confidence, and track progress clearly."
         />
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -311,14 +311,14 @@ const ServicesPage = () => {
             </span>
             <div>
               <p className="text-xs font-black uppercase tracking-[0.24em] text-white/65">ATS Resume Score</p>
-              <h3 className="mt-2 font-heading text-2xl font-extrabold">Check resume compatibility instantly</h3>
+              <h3 className="mt-2 font-heading text-2xl font-extrabold">Review resume compatibility before you apply</h3>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-white/74">
-                Run your resume against ATS expectations and get actionable guidance before applying.
+                Review keyword coverage, structure, and ATS readiness before your resume reaches employers.
               </p>
             </div>
           </div>
           <span className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900">
-            Check My Score
+            Review My Resume
           </span>
         </Link>
       </section>

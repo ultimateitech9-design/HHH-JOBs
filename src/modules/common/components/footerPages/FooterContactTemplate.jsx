@@ -53,9 +53,9 @@ const FooterContactTemplate = ({ pageData, relatedLinks }) => {
       <section className="px-4 py-8 md:py-12">
         <div className="container mx-auto max-w-7xl">
           <PublicSectionHeader
-            eyebrow="Contact Modules"
-            title="Dedicated contact flows for support, partnerships, and platform operations"
-            description="The page now follows a modular public layout closer to the reference product, while keeping HHH Jobs contact destinations and support categories."
+            eyebrow="Contact Paths"
+            title="Dedicated contact flows for support, partnerships, and general enquiries"
+            description="Every request is directed to the team best placed to help, so you receive a clear and timely response."
             centered
           />
 
@@ -85,7 +85,7 @@ const FooterContactTemplate = ({ pageData, relatedLinks }) => {
             <FooterPageAside
               relatedLinks={relatedLinks}
               title="Need a different route?"
-              description="Use the quick links to move into help, policy, or issue-reporting modules without leaving the public experience."
+              description="Use the quick links to move into help, policy, or issue-reporting pages if your request fits another support path."
             />
           </div>
         </div>
@@ -94,10 +94,10 @@ const FooterContactTemplate = ({ pageData, relatedLinks }) => {
       <section className="px-4">
         <div className="container mx-auto max-w-7xl">
           <PublicCallToAction
-            eyebrow="Need Hiring Support"
-            title="Move from inquiry to action with a cleaner employer journey"
-            description="Explore services, pricing, and employer-specific content while keeping the same modular page system throughout the site."
-            chips={['Modular page system', 'Reference-style layout', 'Enterprise-ready structure']}
+            eyebrow="Need More Help"
+            title="Reach the right HHH Jobs team without delay"
+            description="Use the contact path that matches your need, then continue to employer services or support resources as required."
+            chips={['Support guidance', 'Business enquiries', 'Clear routing']}
             actions={[
               { label: 'View Employer Home', to: '/employer-home' },
               { label: 'See Service Plans', to: '/services' }
